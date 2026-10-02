@@ -311,7 +311,7 @@ button:focus-visible,input:focus-visible {
                                 ปัญหาพฤติกรรมเสี่ยงและภาวะ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-300">Office Syndrome</span>
                             </h1>
                             <p class="text-lg text-slate-300 font-light max-w-2xl mx-auto lg:mx-0">
-                                ศึกษาและบรรเทาอาการปวดเมื่อยกล้ามเนื้อจากการนั่งเรียน ทำรายงาน หรือปั่นงานหน้าจอคอมพิวเตอร์และสมาร์ตโฟนเป็นเวลานานในกลุ่มนิสิต มมส
+                                ถอดรหัสพฤติกรรมเสี่ยง ความเจ็บปวด และบรรเทาอาการปวดเมื่อยจากการใช้งานคอมพิวเตอร์และสมาร์ตโฟนเฉลี่ยสูงถึง <span class="text-amber-400 font-semibold">8.6 ชั่วโมง/วัน</span> ในกลุ่มนิสิต มมส
                             </p>
                             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                                 <button onclick="switchPage('exercises')" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 transition-all transform hover:-translate-y-0.5">
@@ -333,13 +333,13 @@ button:focus-visible,input:focus-visible {
                                             <i class="fa-solid fa-triangle-exclamation"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-semibold text-sm text-white">คุณกำลังนั่งอ่านหนังสือนานเกินไปไหม?</h4>
-                                            <p class="text-xs text-slate-400">ควรพักสายตาและขยับร่างกายทุกๆ 1 ชั่วโมง</p>
+                                            <h4 class="font-semibold text-sm text-white">คุณกำลังนั่งทำงานนานเกินไปไหม?</h4>
+                                            <p class="text-xs text-slate-400">89.3% นั่งติดต่อกันเกิน 2 ชม. โดยไม่ลุกเปลี่ยนท่า</p>
                                         </div>
                                     </div>
                                     <div class="bg-slate-950/60 p-5 rounded-2xl border border-slate-800 text-center space-y-3">
-                                        <div class="text-amber-400 text-3xl font-bold">92%</div>
-                                        <p class="text-xs text-slate-300">ของนิสิตที่ทำงานหน้าคอมพิวเตอร์และแท็บเล็ตเป็นเวลานาน มักมีอาการปวดกล้ามเนื้อบริเวณคอและบ่า</p>
+                                        <div class="text-amber-400 text-3xl font-bold">88.6%</div>
+                                        <p class="text-xs text-slate-300">ของนิสิต มมส ประสบปัญหาปวดกล้ามเนื้อบริเวณ คอ บ่า ไหล่ และสะบัก</p>
                                     </div>
                                 </div>
                             </div>
@@ -353,10 +353,10 @@ button:focus-visible,input:focus-visible {
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                         <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
-                            อาการเตือนภัย
+                            สถิติจากแบบสำรวจนิสิต มมส
                         </span>
                         <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">เช็กสภาวะออฟฟิศซินโดรมของคุณ</h2>
-                        <p class="text-slate-600 text-base">คุณมีอาการเหล่านี้ขณะนั่งทำรายงานหรืออ่านหนังสือสอบในหอพัก/ห้องสมุด MSU หรือไม่?</p>
+                        <p class="text-slate-600 text-base">อันดับตำแหน่งความเจ็บปวดที่พบมากที่สุดจากการสำรวจนิสิต มหาวิทยาลัยมหาสารคาม</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -365,32 +365,44 @@ button:focus-visible,input:focus-visible {
                             <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:bg-amber-500 group-hover:text-white transition-all">
                                 <i class="fa-solid fa-head-side-cough"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2">ปวดคอ บ่า ไหล่เรื้อรัง</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">รู้สึกตึงบริเวณต้นคอ บ่าลามไปถึงสะบัก อาจเกิดจากการก้มมองมือถือหรือโน้ตบุ๊กนานเกินไป</p>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-bold text-lg text-slate-800">ปวดคอ บ่า ไหล่ สะบัก</h3>
+                                <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">88.6%</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">พบสูงเป็นอันดับ 1 เกิดจากการก้มมองหน้าจอคอมพิวเตอร์และมือถือติดต่อกันเป็นเวลานาน</p>
                         </div>
                         <!-- Card 2 -->
                         <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
                             <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:bg-amber-500 group-hover:text-white transition-all">
                                 <i class="fa-solid fa-eye"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2">ตาพร่ามัว ปวดกระบอกตา</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">เกิดจากการจ้องหน้าจอคอมพิวเตอร์หรือแท็บเล็ตติดต่อกันหลายชั่วโมงโดยไม่พักสายตา</p>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-bold text-lg text-slate-800">ตาล้า ตาแห้ง ภาพเบลอ</h3>
+                                <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">74.2%</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">อันดับ 2 เกิดจากการจ้องหน้าจอแท็บเล็ตและโน้ตบุ๊กทำงานต่อเนื่องเกินเกณฑ์มาตรฐาน</p>
                         </div>
                         <!-- Card 3 -->
                         <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
                             <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                <i class="fa-solid fa-hand"></i>
+                                <i class="fa-solid fa-face-frown"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2">ชาปลายนิ้ว / มือล็อก</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">อาการกดทับเส้นประสาทบริเวณข้อมือจากการใช้เมาส์หรือพิมพ์งานท่าเดิมซ้ำๆ เป็นเวลานาน</p>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-bold text-lg text-slate-800">ปวดหลังส่วนล่าง & บั้นเอว</h3>
+                                <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">66.5%</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">เกิดจากการนั่งทำงานบนเตียง นั่งหลังค่อม หรือนั่งเก้าอี้ไม้หอพักที่ไม่ซัพพอร์ตสรีระ</p>
                         </div>
                         <!-- Card 4 -->
                         <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 group">
                             <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:bg-amber-500 group-hover:text-white transition-all">
-                                <i class="fa-solid fa-face-frown"></i>
+                                <i class="fa-solid fa-hand"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-800 mb-2">ปวดหลังส่วนล่าง</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">นั่งหลังค่อมบนเก้าอี้ห้องเรียนหรือเก้าอี้หอพัก ทำให้กล้ามเนื้อหลังทำงานหนักและเกร็งตัว</p>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-bold text-lg text-slate-800">ปวดข้อมือ นิ้วล็อก ชาปลายมือ</h3>
+                                <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">45.1%</span>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">พบได้มากในกลุ่มนิสิตสายไอที สื่อดิจิทัล และคนที่ต้องใช้เมาส์ปากกา/สะบัดเมาส์ทำงานหนัก</p>
                         </div>
                     </div>
                 </div>
@@ -400,11 +412,11 @@ button:focus-visible,input:focus-visible {
             <section class="py-16 bg-amber-50 border-y border-amber-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
                     <span class="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-200/60 px-3.5 py-1.5 rounded-full">
-                        เคล็ดลับจากผู้เชี่ยวชาญ
+                        ข้อค้นพบสำคัญจากการสำรวจ
                     </span>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">หลักการ 20-20-20 ง่ายๆ สำหรับนิสิต MSU</h2>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">นิสิตเพียง 12.8% เท่านั้นที่ได้ยืดเหยียดกล้ามเนื้อระหว่างวัน</h2>
                     <p class="text-slate-700 max-w-2xl mx-auto text-base">
-                        ทุกๆ <span class="font-bold text-amber-700">20 นาที</span> ให้มองไปที่ไกล <span class="font-bold text-amber-700">20 ฟุต</span> เป็นเวลา <span class="font-bold text-amber-700">20 วินาที</span> และลุกขึ้นยืดเส้นยืดสายทุกๆ 1 ชั่วโมง!
+                        นิสิตส่วนใหญ่ขาดการตระหนักรู้ขณะทำงานจนหลังค่อม และมักพึ่งสเปรย์ ยาหม่อง หรือนวดแผนโบราณซึ่งแก้ปัญหาได้เพียงชั่วคราว มาร่วมปรับพฤติกรรมและยืดเหยียดง่ายๆ กันได้เลย!
                     </p>
                     <div>
                         <button onclick="switchPage('exercises')" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3.5 rounded-xl shadow-md transition-all">
@@ -642,8 +654,8 @@ button:focus-visible,input:focus-visible {
                                     <i class="fa-solid fa-lightbulb"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900">ระบบแจ้งเตือน</h4>
-                                    <p id="device-notice" class="text-sm text-slate-600 mt-1 leading-relaxed">เชื่อมต่ออุปกรณ์เพื่อดูแบตเตอรี่และสถานะการทำงานแบบเรียลไทม์</p>
+                                    <h4 class="font-bold text-slate-900">ระบบแจ้งเตือนแบบไม่ขัดจังหวะ</h4>
+                                    <p id="device-notice" class="text-sm text-slate-600 mt-1 leading-relaxed">เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตร</p>
                                 </div>
                             </div>
                         </div>
@@ -664,7 +676,7 @@ button:focus-visible,input:focus-visible {
                         คำถาม & ความรู้รอบตัว
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ผลสรุปจากแบบฟอร์มสำรวจความคิดเห็น</h2>
-                    <p class="text-slate-600 text-base">คำถามสำคัญ 5 ข้อจากความคิดเห็นเกี่ยวกับออฟฟิศซินโดรมและแนวทางการออกแบบผลิตภัณฑ์</p>
+                    <p class="text-slate-600 text-base">การถอดรหัสพฤติกรรมเสี่ยง ความเจ็บปวด และความต้องการของนิสิต มมส 5 ข้อหลัก</p>
                 </div>
 
                 <!-- Accordion Q&A list -->
@@ -681,7 +693,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-1" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                ผู้ตอบแบบสอบถามส่วนใหญ่ประสบปัญหาอาการออฟฟิศซินโดรมบริเวณ <strong>คอ บ่า ไหล่ หลัง สะบัก และแขน/ข้อมือ</strong> จากการนั่งทำงานหน้าจอคอมพิวเตอร์ แท็บเล็ต หรือเมาส์ปากกาเป็นเวลานานเกิน 3-4 ชั่วโมง โดยพฤติกรรมหรือท่านั่งที่เป็นสาเหตุหลัก ได้แก่ <strong>การนั่งทำงานนานต่อเนื่องโดยไม่เปลี่ยนท่าทาง</strong> การนั่งหลังค่อม ยืดตัวไปข้างหน้า นั่งไขว่ห้าง นั่งขัดสมาธิ รวมถึงการนั่งเล่นโทรศัพท์และสะบัดเมาส์หนักเกินไป
+                                ผู้ตอบแบบสอบถามส่วนใหญ่ประสบปัญหาปวดบริเวณ <strong>หลัง ไหล่ แขน คอ สะบัก สะโพก และข้อมือ</strong> จากการนั่งทำงานหน้าคอมพิวเตอร์ แท็บเล็ต หรือเมาส์ปากกาเกิน 3-4 ชั่วโมง สาเหตุหลักมาจาก <strong>การนั่งท่าเดิมนานโดยไม่เปลี่ยนอิริยาบถ</strong> นั่งหลังค่อม นั่งยืดตัวไปข้างหน้า นั่งขัดสมาธิ นั่งไขว่ห้าง นั่งทำงานบนเตียง รวมถึงการสะบัดเมาส์หนัก และนั่งท่านั่งแบบแอลในเดธโน้ต
                             </div>
                         </div>
                     </div>
@@ -697,7 +709,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-2" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                ผลิตภัณฑ์ที่ผู้ใช้งานมองว่าตอบโจทย์มากที่สุดคือ <strong>เบาะรองหลังและที่วางเท้า</strong> เพื่อช่วยปรับท่านั่งให้ถูกต้อง รองลงมาคืออุปกรณ์นวดและบรรเทาอาการปวดในรูปแบบต่าง ๆ เช่น <strong>เก้าอี้นวด/เก้าอี้ปรับเอนนอนได้ เครื่องนวดหลัง/ไหล่ กระเป๋านวด ยาทาแก้ปวด</strong> และเสื้อรัดที่มีประคบยาแก้ปวด
+                                นิสิตสนใจ <strong>เบาะรองหลังและที่วางเท้า</strong> เพื่อปรับท่านั่งให้ถูกต้อง รองลงมาคืออุปกรณ์นวด ได้แก่ <strong>กระเป๋านวดหลัง/กระเป๋านวด ที่นวดไหล่ เก้าอี้นวดปรับเอนนอน ยาทาแบบไม่ดูแก่</strong> และเสื้อรัดที่มีประคบยาแก้ปวดที่ใช้งานได้จริงในชีวิตประจำวัน
                             </div>
                         </div>
                     </div>
@@ -713,7 +725,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-3" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                ผู้ใช้งานต้องการให้ผลิตภัณฑ์มี <strong>ขนาดกะทัดรัด ประหยัดพื้นที่ และพกพาสะดวก</strong> ไม่เกะกะห้องหรือโต๊ะทำงาน สามารถพกพาใส่กระเป๋าเป้หรือกระเป๋าเดินทางได้ง่าย เหมาะกับโต๊ะหอพัก คาเฟ่ หรือสตูดิโอ และใช้งานได้ยืดหยุ่นทุกที่
+                                เน้น <strong>ขนาดกะทัดรัด ประหยัดพื้นที่ พกพาสะดวก ไม่กินพื้นที่ห้องพัก</strong> ยืดหยุ่นพอที่จะใส่กระเป๋าเป้หรือกระเป๋าเดินทางได้ง่าย เหมาะกับพื้นที่จำกัดอย่างโต๊ะหอพัก โต๊ะรวมในสตูดิโอ หรือร้านคาเฟ่
                             </div>
                         </div>
                     </div>
@@ -729,7 +741,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-4" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                เน้นสไตล์ <strong>Minimalist โทนสีเรียบ สบายตา</strong> เช่น สีขาว สีครีม สีเขียว หรือสีพาสเทล และสไตล์คลาสสิก/โทนสีอบอุ่นอย่างน้ำตาลหรือเทา โดยผิวสัมผัสควรมีความนุ่มสบาย ทำความสะอาดง่าย และสามารถกลมกลืนกับโต๊ะทำงานหรือของใช้ส่วนตัวได้อย่างลงตัว
+                                นิสิตชอบสไตล์ <strong>Minimalist เรียบง่าย สบายตา เข้ากับโต๊ะทำงาน</strong> ใช้โทนสีพาสเทล สีขาว สีครีม สีเขียว สีชมพู หรือสีเข้มคลาสสิกอย่าง สีดำ น้ำตาล เทา ผิวสัมผัสนุ่ม ทำความสะอาดง่าย และรูปลักษณ์ทันสมัยไม่ดูเหมือนอุปกรณ์ทางการแพทย์จนเกินไป
                             </div>
                         </div>
                     </div>
@@ -745,8 +757,8 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-5" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                <strong>ฟังก์ชันที่จำเป็น:</strong> ระบบแจ้งเตือนให้พักสายตา ยืดเส้นยืดสาย พร้อมฟังก์ชันนวดบรรเทาอาการปวดหลัง/เมื่อยล้าที่ใช้งานง่าย สะดวก และควบคุมผ่านแอปพลิเคชันบนมือถือได้<br><br>
-                                <strong>ฟังก์ชันที่ควรหลีกเลี่ยง:</strong> ลูกเล่นหรือเสียงแจ้งเตือนบนหน้าจอที่น่ารำคาญหรืออาจรบกวนสมาธิขณะกำลังโฟกัสงาน
+                                <strong>ฟังก์ชันที่จำเป็น:</strong> ระบบแจ้งเตือนให้พักสายตา ยืดเส้นยืดสาย พร้อมฟังก์ชันนวดคลายความเมื่อยล้าที่เชื่อมต่อแอปบนมือถือได้ ใช้งานง่าย ไม่ทำให้ปวดหลังหรือปวดหัว<br><br>
+                                <strong>ฟังก์ชันที่ควรหลีกเลี่ยง:</strong> เสียงแจ้งเตือนหน้าจอ หรือลูกเล่นจุกจิกที่น่ารำคาญขณะกำลังตั้งใจโฟกัสงาน
                             </div>
                         </div>
                     </div>
@@ -787,10 +799,10 @@ button:focus-visible,input:focus-visible {
                             <i class="fa-solid fa-user-graduate"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-base text-slate-900">นางสาวกำไล บัฒทิตใจ</h3>
+                            <h3 class="font-bold text-base text-slate-900">นางสาวกำไล บัณฑิตใจ</h3>
                             <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230002</p>
                         </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
+                        <p class="text-xs text-slate-500">คณะวิทยาการสารสนเทศ </p>
                     </div>
 
                     <!-- Member 3 -->
@@ -1028,7 +1040,7 @@ button:focus-visible,input:focus-visible {
                 badge.innerHTML = '<i class="fa-solid fa-link-slash mr-1"></i> ไม่ได้เชื่อมต่อ';
                 name.textContent = 'ยังไม่ได้เชื่อมต่อ';
                 work.textContent = 'ยังไม่ได้เชื่อมต่อ';
-                notice.textContent = 'เชื่อมต่ออุปกรณ์เพื่อดูแบตเตอรี่และสถานะการทำงานแบบเรียลไทม์';
+                notice.textContent = 'เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตร';
                 connectBtn.innerHTML = '<i class="fa-solid fa-bluetooth mr-2"></i> เชื่อมต่ออุปกรณ์';
                 connectBtn.className = 'flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-3.5 rounded-2xl transition-all shadow-md';
                 battery.textContent = '--%';
