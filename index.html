@@ -151,10 +151,10 @@ button:active { transform: scale(.96); }
 .exercise-card:hover::before { transform: scaleY(1); }
 .exercise-card:hover { transform: translateX(4px); }
 
-#ex-icon-container {
-    transition: transform .4s ease, background-color .3s ease;
+#ex-image-container {
+    transition: transform .4s ease;
 }
-#ex-icon-container:hover { transform: scale(1.08) rotate(3deg); }
+#ex-image-container:hover { transform: scale(1.02); }
 
 /* MOBILE MENU */
 #mobile-menu {
@@ -423,7 +423,7 @@ button:focus-visible,input:focus-visible {
                         ท่าบริหารแก้ออฟฟิศซินโดรม
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">คู่มือยืดเหยียดร่างกายสำหรับนิสิต</h2>
-                    <p class="text-slate-600 text-base">คลิกเลือกท่าบริหารด้านล่างเพื่อดูคำแนะนำและอนิเมชัน/ภาพประกอบการปฏิบัติตัวที่ถูกต้อง</p>
+                    <p class="text-slate-600 text-base">คลิกเลือกท่าบริหารด้านล่างเพื่อดูคำแนะนำและภาพประกอบการปฏิบัติตัวที่ถูกต้อง</p>
                 </div>
 
                 <!-- Exercise Grid / Interactive Showcase -->
@@ -488,13 +488,13 @@ button:focus-visible,input:focus-visible {
                             </span>
                         </div>
 
-                        <!-- Animated Graphic Container -->
-                        <div class="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-center text-white flex flex-col items-center justify-center min-h-[260px] overflow-hidden shadow-inner">
+                        <!-- Image Graphic Container (Enlarged) -->
+                        <div class="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-center text-white flex flex-col items-center justify-center min-h-[340px] overflow-hidden shadow-inner">
                             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FACC15_1px,transparent_1px)] [background-size:12px_12px]"></div>
                             
-                            <!-- Animated Icon Illustration -->
-                            <div id="ex-icon-container" class="w-24 h-24 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center text-5xl mb-4 transition-all duration-500 animate-pulse-slow">
-                                <i id="ex-main-icon" class="fa-solid fa-child-reaching"></i>
+                            <!-- Assets Image Display Container -->
+                            <div id="ex-image-container" class="w-full max-w-md h-64 sm:h-72 rounded-2xl bg-white/5 border border-white/10 p-3 mb-4 flex items-center justify-center overflow-hidden shadow-lg backdrop-blur-sm">
+                                <img id="ex-main-img" src="assets/Neck.png" alt="Neck Stretch" class="w-full h-full object-contain rounded-xl">
                             </div>
 
                             <h3 id="ex-title" class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-2">ยืดกล้ามเนื้อคอ (Neck Stretch)</h3>
@@ -931,14 +931,14 @@ button:focus-visible,input:focus-visible {
     <!-- JavaScript for Page Transition & Interactions -->
     <script>
         
-        // Exercise Data Array
+        // Exercise Data Array (Updated with image paths from assets folder)
         const exercises = [
             {
                 title: "ยืดกล้ามเนื้อคอ (Neck Stretch)",
                 subtitle: "เอียงศีรษะไปด้านข้าง ใช้มือข้างเดียวกันดึงเบาๆ จนรู้สึกตึงบริเวณข้างคอ สลับซ้าย-ขวา",
                 duration: "ทำค้างไว้ 10-15 วินาที / ข้าง",
                 badge: "ท่าที่ 1 จาก 4",
-                icon: "fa-child-reaching",
+                image: "assets/Neck.png",
                 steps: [
                     "นั่งตัวตรง ผ่อนคลายหัวไหล่ตามสบายทั้งสองข้าง",
                     "เอียงศีรษะไปทางขวาให้ชิดไหล่ขวามากที่สุดโดยไม่ยกหัวไหล่ขึ้น",
@@ -951,7 +951,7 @@ button:focus-visible,input:focus-visible {
                 subtitle: "ประสานมือยืดแขนไปข้างหน้าแล้วโก่งหลัง หรือดึงแขนพาดลำตัวเพื่อคลายบ่า",
                 duration: "ทำค้างไว้ 15-20 วินาที",
                 badge: "ท่าที่ 2 จาก 4",
-                icon: "fa-hands-bound",
+                image: "assets/Shoulder.png",
                 steps: [
                     "ประสานมือทั้งสองข้างเข้าด้วยกันแล้วเหยียดแขนออกไปด้านหน้าให้สุดแขน",
                     "ก้มศีรษะเล็กน้อยและโก่งหลังไปข้างหลังเพื่อให้สะบักยืดออก",
@@ -964,7 +964,7 @@ button:focus-visible,input:focus-visible {
                 subtitle: "เหยียดแขนตรง กระดกข้อมือขึ้นและลง เพื่อป้องกันอาการนิ้วล็อกและชาปลายนิ้ว",
                 duration: "ทำค้างไว้ 10 วินาทีต่อท่า",
                 badge: "ท่าที่ 3 จาก 4",
-                icon: "fa-hand",
+                image: "assets/Wrist.png",
                 steps: [
                     "ยื่นแขนขวาออกไปข้างหน้า คว่ำมือลงแล้วกระดกปลายนิ้วมือขึ้น",
                     "ใช้มือซ้ายดึงปลายนิ้วมือขวาเข้าหาตัวจนรู้สึกตึงที่ท้องแขน ค้างไว้ 10 วินาที",
@@ -977,7 +977,7 @@ button:focus-visible,input:focus-visible {
                 subtitle: "ประสานมือไว้ด้านหลังแล้วยืดอก ช่วยแก้อาการหลังค่อมจากการนั่งจ้องจอนาน",
                 duration: "ทำค้างไว้ 15 วินาที",
                 badge: "ท่าที่ 4 จาก 4",
-                icon: "fa-person-arrow-down-to-line",
+                image: "assets/Chest.png",
                 steps: [
                     "ยืนหรือนั่งหลังตรง ประสานมือทั้งสองข้างไว้บริเวณสะโพกด้านหลัง",
                     "ยืดอก ผายไหล่ไปด้านหลังและยกแขนขึ้นเล็กน้อย",
@@ -1233,7 +1233,13 @@ button:focus-visible,input:focus-visible {
             document.getElementById('ex-duration').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${ex.duration}`;
             document.getElementById('ex-title').innerText = ex.title;
             document.getElementById('ex-subtitle').innerText = ex.subtitle;
-            document.getElementById('ex-main-icon').className = `fa-solid ${ex.icon}`;
+            
+            // Update image source
+            const mainImg = document.getElementById('ex-main-img');
+            if (mainImg) {
+                mainImg.src = ex.image;
+                mainImg.alt = ex.title;
+            }
 
             // Update steps list
             const stepsList = document.getElementById('ex-steps');
