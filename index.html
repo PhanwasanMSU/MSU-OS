@@ -663,24 +663,26 @@ button:focus-visible,input:focus-visible {
                     <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
                         คำถาม & ความรู้รอบตัว
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ไขข้อข้องใจเกี่ยวกับออฟฟิศซินโดรม</h2>
-                    <p class="text-slate-600 text-base">รวบรวมคำถามสำคัญเกี่ยวกับพฤติกรรมเสี่ยง อาการ และการป้องกันสำหรับนิสิต มมส</p>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ผลสรุปจากแบบฟอร์มสำรวจความคิดเห็น</h2>
+                    <p class="text-slate-600 text-base">คำถามสำคัญ 5 ข้อจากความคิดเห็นเกี่ยวกับออฟฟิศซินโดรมและแนวทางการออกแบบผลิตภัณฑ์</p>
                 </div>
 
                 <!-- Accordion Q&A list -->
                 <div class="space-y-4">
-                    
+
                     <!-- Q1 -->
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
                         <button onclick="toggleAccordion(1)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
                             <span class="flex items-center text-base sm:text-lg">
                                 <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
-                                ทำไมคนที่นั่งทำงานเป็นเวลานานจึงมีโอกาสเป็นออฟฟิศซินโดรม?
+                                จุดไหนที่ผู้ตอบแบบสอบถามปวดเมื่อย และพฤติกรรมใดเป็นสาเหตุหลัก?
                             </span>
                             <i id="acc-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                         </button>
-                        <div id="acc-body-1" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            การนั่งทำงานหรืออ่านหนังสือติดต่อกันเป็นเวลานานทำให้กล้ามเนื้อต้องเกร็งตัวอยู่ในท่าเดิมอย่างต่อเนื่อง (Static Contraction) ส่งผลให้เลือดไหลเวียนไปเลี้ยงกล้ามเนื้อบริเวณนั้นๆ ได้ไม่ดี เกิดการคั่งของกรดแลคติก และเกิดภาวะกล้ามเนื้อหดเกร็งเรื้อรัง (Myofascial Pain Syndrome)
+                        <div id="acc-body-1" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <div>
+                                ผู้ตอบแบบสอบถามส่วนใหญ่ประสบปัญหาอาการออฟฟิศซินโดรมบริเวณ <strong>คอ บ่า ไหล่ หลัง สะบัก และแขน/ข้อมือ</strong> จากการนั่งทำงานหน้าจอคอมพิวเตอร์ แท็บเล็ต หรือเมาส์ปากกาเป็นเวลานานเกิน 3-4 ชั่วโมง โดยพฤติกรรมหรือท่านั่งที่เป็นสาเหตุหลัก ได้แก่ <strong>การนั่งทำงานนานต่อเนื่องโดยไม่เปลี่ยนท่าทาง</strong> การนั่งหลังค่อม ยืดตัวไปข้างหน้า นั่งไขว่ห้าง นั่งขัดสมาธิ รวมถึงการนั่งเล่นโทรศัพท์และสะบัดเมาส์หนักเกินไป
+                            </div>
                         </div>
                     </div>
 
@@ -689,12 +691,14 @@ button:focus-visible,input:focus-visible {
                         <button onclick="toggleAccordion(2)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
                             <span class="flex items-center text-base sm:text-lg">
                                 <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
-                                อาการของออฟฟิศซินโดรมที่พบได้บ่อยมีอะไรบ้าง?
+                                ผลิตภัณฑ์หรือแกดเจ็ตแบบใดที่ตอบโจทย์วิถีชีวิตของผู้ใช้งาน?
                             </span>
                             <i id="acc-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                         </button>
-                        <div id="acc-body-2" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            อาการที่พบได้บ่อย ได้แก่ อาการปวดตึงบริเวณคอ บ่า ไหล่ และสะบัก, ปวดหลังส่วนล่างจากการนั่งหลังค่อม, อาการปวดกระบอกตาและตาพร่ามัวจากการจ้องจอนาน, รวมถึงอาการชาปลายนิ้วหรือมือล็อกจากการใช้เมาส์และพิมพ์งานต่อเนื่อง
+                        <div id="acc-body-2" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <div>
+                                ผลิตภัณฑ์ที่ผู้ใช้งานมองว่าตอบโจทย์มากที่สุดคือ <strong>เบาะรองหลังและที่วางเท้า</strong> เพื่อช่วยปรับท่านั่งให้ถูกต้อง รองลงมาคืออุปกรณ์นวดและบรรเทาอาการปวดในรูปแบบต่าง ๆ เช่น <strong>เก้าอี้นวด/เก้าอี้ปรับเอนนอนได้ เครื่องนวดหลัง/ไหล่ กระเป๋านวด ยาทาแก้ปวด</strong> และเสื้อรัดที่มีประคบยาแก้ปวด
+                            </div>
                         </div>
                     </div>
 
@@ -703,12 +707,14 @@ button:focus-visible,input:focus-visible {
                         <button onclick="toggleAccordion(3)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
                             <span class="flex items-center text-base sm:text-lg">
                                 <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
-                                การนั่งท่าเดิมนาน ๆ ส่งผลต่อร่างกายอย่างไร?
+                                ผู้ใช้งานต้องการรูปทรง ขนาด และโครงสร้างของผลิตภัณฑ์แบบใด?
                             </span>
                             <i id="acc-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                         </button>
-                        <div id="acc-body-3" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            ทำให้ข้อต่อและเอ็นบริเวณกระดูกสันหลังและคอเกิดความเครียดสะสม หมอนรองกระดูกเสื่อมเร็วขึ้น กล้ามเนื้อบางมัดทำงานหนักเกินไปจนเกิดปมกล้ามเนื้อ (Trigger Points) ที่ทำให้เกิดอาการปวดร้าวลามไปยังส่วนอื่นๆ เช่น ปวดหัวไมเกรน หรือปวดร้าวลงแขน
+                        <div id="acc-body-3" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <div>
+                                ผู้ใช้งานต้องการให้ผลิตภัณฑ์มี <strong>ขนาดกะทัดรัด ประหยัดพื้นที่ และพกพาสะดวก</strong> ไม่เกะกะห้องหรือโต๊ะทำงาน สามารถพกพาใส่กระเป๋าเป้หรือกระเป๋าเดินทางได้ง่าย เหมาะกับโต๊ะหอพัก คาเฟ่ หรือสตูดิโอ และใช้งานได้ยืดหยุ่นทุกที่
+                            </div>
                         </div>
                     </div>
 
@@ -717,12 +723,14 @@ button:focus-visible,input:focus-visible {
                         <button onclick="toggleAccordion(4)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
                             <span class="flex items-center text-base sm:text-lg">
                                 <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
-                                เราสามารถป้องกันออฟฟิศซินโดรมได้อย่างไร?
+                                ผู้ใช้งานต้องการสไตล์งานดีไซน์ โทนสี และผิวสัมผัสแบบใด?
                             </span>
                             <i id="acc-icon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                         </button>
-                        <div id="acc-body-4" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            ป้องกันได้โดยการปรับท่านั่งให้ถูกต้อง (หลังตรง พนักพิงรองรับสะบักและหลังส่วนล่าง), จัดระดับหน้าจอคอมพิวเตอร์ให้อยู่ในระดับสายตา, พักเบรกเปลี่ยนอิริยาบถทุกๆ 1 ชั่วโมง, และออกกำลังกายยืดเหยียดกล้ามเนื้อเป็นประจำสม่ำเสมอ
+                        <div id="acc-body-4" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <div>
+                                เน้นสไตล์ <strong>Minimalist โทนสีเรียบ สบายตา</strong> เช่น สีขาว สีครีม สีเขียว หรือสีพาสเทล และสไตล์คลาสสิก/โทนสีอบอุ่นอย่างน้ำตาลหรือเทา โดยผิวสัมผัสควรมีความนุ่มสบาย ทำความสะอาดง่าย และสามารถกลมกลืนกับโต๊ะทำงานหรือของใช้ส่วนตัวได้อย่างลงตัว
+                            </div>
                         </div>
                     </div>
 
@@ -731,40 +739,15 @@ button:focus-visible,input:focus-visible {
                         <button onclick="toggleAccordion(5)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
                             <span class="flex items-center text-base sm:text-lg">
                                 <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
-                                การพักหรือยืดกล้ามเนื้อระหว่างทำงานช่วยลดอาการได้หรือไม่?
+                                ฟังก์ชันใดจำเป็น และฟังก์ชันใดควรหลีกเลี่ยงในผลิตภัณฑ์?
                             </span>
                             <i id="acc-icon-5" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
                         </button>
-                        <div id="acc-body-5" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            ช่วยได้อย่างมีประสิทธิภาพมาก การยืดเหยียดกล้ามเนื้อ (Stretching) นาน 5-10 นาทีทุกๆ ชั่วโมง จะช่วยกระตุ้นการไหลเวียนโลหิต คลายความตึงเครียดของเส้นใยกล้ามเนื้อ และลดการสะสมของกรดในกล้ามเนื้อได้อย่างยอดเยี่ยม
-                        </div>
-                    </div>
-
-                    <!-- Q6 -->
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
-                        <button onclick="toggleAccordion(6)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
-                            <span class="flex items-center text-base sm:text-lg">
-                                <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
-                                สภาพแวดล้อม เช่น โต๊ะ เก้าอี้ และหน้าจอ มีผลต่อการเกิดออฟฟิศซินโดรมอย่างไร?
-                            </span>
-                            <i id="acc-icon-6" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
-                        </button>
-                        <div id="acc-body-6" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            มีผลโดยตรง หากโต๊ะสูงหรือต่ำเกินไป เก้าอี้ไม่มีพนักพิงรองรับหลัง หรือหน้าจออยู่ต่ำเกินไป จะบังคับให้ร่างกายต้องเอียงหรือก้มตัวโดยอัตโนมัติ ส่งผลให้กล้ามเนื้อทำงานหนักข้างเดียวจนเกิดอาการบาดเจ็บเรื้อรัง
-                        </div>
-                    </div>
-
-                    <!-- Q7 -->
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
-                        <button onclick="toggleAccordion(7)" class="w-full text-left p-6 font-bold text-slate-800 flex items-center justify-between hover:bg-slate-50 transition-all">
-                            <span class="flex items-center text-base sm:text-lg">
-                                <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">7</span>
-                                ออฟฟิศซินโดรมส่งผลต่อประสิทธิภาพในการเรียนหรือการทำงานอย่างไร?
-                            </span>
-                            <i id="acc-icon-7" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
-                        </button>
-                        <div id="acc-body-7" class="hidden px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                            อาการปวดเมื่อยและความเครียดจากร่างกายทำให้สมาธิในการอ่านหนังสือหรือทำโปรเจกต์ลดลง รู้สึกหงุดหงิดง่าย อ่อนเพลียระหว่างวัน และส่งผลให้ผลการเรียนหรือประสิทธิภาพในการทำงานลดลงอย่างเห็นได้ชัด
+                        <div id="acc-body-5" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <div>
+                                <strong>ฟังก์ชันที่จำเป็น:</strong> ระบบแจ้งเตือนให้พักสายตา ยืดเส้นยืดสาย พร้อมฟังก์ชันนวดบรรเทาอาการปวดหลัง/เมื่อยล้าที่ใช้งานง่าย สะดวก และควบคุมผ่านแอปพลิเคชันบนมือถือได้<br><br>
+                                <strong>ฟังก์ชันที่ควรหลีกเลี่ยง:</strong> ลูกเล่นหรือเสียงแจ้งเตือนบนหน้าจอที่น่ารำคาญหรืออาจรบกวนสมาธิขณะกำลังโฟกัสงาน
+                            </div>
                         </div>
                     </div>
 
