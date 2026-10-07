@@ -778,64 +778,165 @@ button:focus-visible,input:focus-visible {
         </section>
 
         <!-- PAGE: ECOSYSTEM -->
-        <section id="page-ecosystem" class="page-section py-16 lg:py-24">
+        <section id="page-ecosystem" class="page-section py-10 lg:py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
+
+                <!-- SYSTEM HEADER -->
+                <div class="text-center max-w-5xl mx-auto mb-8 lg:mb-10 space-y-3">
+                    <span class="text-amber-600 font-semibold text-xs sm:text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
                         REST Suite Architecture
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ระบบนิเวศสุขภาพและสรีระศาสตร์อัจฉริยะแบบครบวงจร</h2>
-                    <p class="text-slate-600 text-base">ออกแบบมาเพื่อเชื่อมโยงการทำงานของอุปกรณ์ทั้ง 3 ชิ้น (กระเป๋า, หมอนรองคอ, และเบาะรองนั่ง) ให้เป็นอันหนึ่งอันเดียวกัน เพื่อดูแลสุขภาพผู้ใช้งานอย่างครอบคลุม</p>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                        ระบบนิเวศสุขภาพและสรีระศาสตร์อัจฉริยะแบบครบวงจร
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-4xl mx-auto">
+                        ออกแบบมาเพื่อเชื่อมโยงการทำงานของอุปกรณ์ทั้ง 3 ชิ้น (กระเป๋า, หมอนรองคอ, และเบาะรองนั่ง) ให้เป็นอันหนึ่งอันเดียวกัน เพื่อดูแลสุขภาพผู้ใช้งานอย่างครอบคลุม
+                    </p>
                 </div>
 
-                <div class="mb-16 bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-3xl shadow-2xl overflow-hidden max-w-4xl mx-auto text-center">
-                    <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-950/60 p-3 border border-white/10 flex items-center justify-center">
-                        <img src="assets/System.jpg" alt="REST Suite Ecosystem Architecture" class="w-full h-full object-contain rounded-xl">
-                    </div>
-                    <p class="text-xs text-slate-400 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> ภาพจำลองการทำงานประสานกันของระบบนิเวศสุขภาพ REST Suite</p>
-                </div>
+                <!-- SYSTEM OVERVIEW: IMAGE + KEY MESSAGE -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 mb-7 lg:mb-8 items-stretch">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-layer-group"></i>
+                    <!-- ARCHITECTURE IMAGE -->
+                    <div class="lg:col-span-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 p-3 sm:p-4 rounded-3xl shadow-2xl overflow-hidden border border-slate-800">
+                        <div class="w-full h-[360px] sm:h-[430px] lg:h-[500px] rounded-2xl overflow-hidden bg-slate-950/70 p-2 sm:p-3 border border-white/10 flex items-center justify-center">
+                            <img src="assets/PRO3.png" alt="REST Suite Ecosystem Architecture" class="w-full h-full object-contain rounded-xl">
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">3-in-1 Combo Support</h3>
+                        <p class="text-xs text-slate-400 mt-2.5 text-center">
+                            <i class="fa-solid fa-circle-info mr-1"></i> ภาพจำลองการทำงานประสานกันของระบบนิเวศสุขภาพ REST Suite
+                        </p>
+                    </div>
+
+                    <!-- QUICK SYSTEM SUMMARY -->
+                    <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200 shadow-xl p-5 sm:p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-network-wired"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-wider text-amber-600">REST Ecosystem</p>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-900">ระบบทำงานร่วมกัน</h3>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                                    <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-backpack"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">กระเป๋า</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">ดูแลและซัพพอร์ตบริเวณหลังและเอว</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                                    <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-head-side-cough"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">หมอนรองคอ</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">ดูแลและซัพพอร์ตบริเวณคอ</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                                    <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
+                                        <i class="fa-solid fa-chair"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">เบาะรองนั่ง</h4>
+                                        <p class="text-xs text-slate-500 mt-0.5">ดูแลและซัพพอร์ตบริเวณเชิงกราน/ก้นกบ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 rounded-2xl bg-amber-50 border border-amber-100 p-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-amber-400 text-slate-900 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-link"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">หัวใจของระบบ</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed mt-1">เชื่อมโยงอุปกรณ์ทั้ง 3 ชิ้นให้ทำงานเป็นระบบเดียวกัน เพื่อดูแลสุขภาพผู้ใช้งานอย่างครอบคลุม</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SYSTEM FEATURES -->
+                <div class="flex items-center justify-between gap-4 mb-4">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-amber-600">Core Features</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">ความสามารถหลักของ REST Suite</h3>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500 bg-white border border-slate-200 rounded-full px-3 py-2">
+                        <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                        6 ระบบหลัก
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-amber-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">3-in-1 Combo Support</h3>
+                        </div>
                         <p class="text-slate-600 text-sm leading-relaxed">ดูแลและซัพพอร์ตสรีระร่างกายพร้อมกัน 3 จุดหลัก คือ คอ, หลัง/เอว และเชิงกราน/ก้นกบ</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-bolt"></i>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-amber-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Electric Massage Synergy</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Electric Massage Synergy</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">ระบบนวดไฟฟ้าของทุกอุปกรณ์ทำงานสอดประสานกันเพื่อการผ่อนคลายที่สมบูรณ์แบบ</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-network-wired"></i>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-amber-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Wired & Wireless Sync</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Wired & Wireless Sync</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">รองรับการเชื่อมต่อทำงานร่วมกันได้ทั้งแบบไร้สายผ่าน Bluetooth Wireless Sync และแบบใช้สายเชื่อมต่อคอมโบ (Wired Linking Cables)</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-mobile-screen-button"></i>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-sky-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Universal Mobile App Control</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Universal Mobile App Control</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">ควบคุมและปรับแต่งโหมดการนวดของทุกอุปกรณ์ได้จากแอปพลิเคชันเดียวบนมือถือ เช่น โหมด Combo Active Therapy</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-battery-full"></i>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-emerald-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-battery-full"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Multi-Device Recharge & Shared Energy</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Multi-Device Recharge & Shared Energy</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">ระบบชาร์จและแชร์พลังงานระหว่างอุปกรณ์ผ่านพอร์ตเสริมและ USB-C เพิ่มความสะดวกในการพกพา</p>
                     </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                            <i class="fa-solid fa-palette"></i>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-md space-y-3 hover:-translate-y-1 transition-all border-t-4 border-t-slate-400">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">REST Color Collection</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">REST Color Collection</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">โทนสีคุมโทนยอดนิยม 4 สี ได้แก่ Classic Black, Navy Blue, Space Grey และ Forest Green</p>
                     </div>
                 </div>
