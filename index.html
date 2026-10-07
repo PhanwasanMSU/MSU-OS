@@ -243,6 +243,12 @@ button:focus-visible,input:focus-visible {
                 <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-3 py-2.5 rounded-xl transition-all text-amber-600 bg-amber-50 font-semibold">
                     <i class="fa-solid fa-house mr-1.5"></i> หน้าแรก
                 </button>
+                <button onclick="switchPage('products')" id="nav-products" class="nav-btn px-3 py-2.5 rounded-xl transition-all text-slate-600 hover:text-amber-600 hover:bg-amber-50/50">
+                    <i class="fa-solid fa-box-open mr-1.5"></i> สินค้า
+                </button>
+                <button onclick="switchPage('ecosystem')" id="nav-ecosystem" class="nav-btn px-3 py-2.5 rounded-xl transition-all text-slate-600 hover:text-amber-600 hover:bg-amber-50/50">
+                    <i class="fa-solid fa-network-wired mr-1.5"></i> ระบบ
+                </button>
                 <button onclick="switchPage('exercises')" id="nav-exercises" class="nav-btn px-3 py-2.5 rounded-xl transition-all text-slate-600 hover:text-amber-600 hover:bg-amber-50/50">
                     <i class="fa-solid fa-dumbbell mr-1.5"></i> ท่าบริหารร่างกาย
                 </button>
@@ -259,11 +265,8 @@ button:focus-visible,input:focus-visible {
 
             <!-- Quick Action / Mobile Hamburger -->
             <div class="flex items-center space-x-2">
-                <button onclick="switchPage('exercises')" class="hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition-all transform active:scale-95 text-sm">
-                    <i class="fa-solid fa-play mr-1.5"></i> ยืดเหยียดทันที
-                </button>
-                <button onclick="switchPage('device')" class="hidden lg:inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2.5 rounded-xl shadow-lg transition-all transform active:scale-95 text-sm">
-                    <i class="fa-solid fa-bag-shopping mr-1.5"></i> อุปกรณ์
+                <button onclick="switchPage('products')" class="hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition-all transform active:scale-95 text-sm">
+                    <i class="fa-solid fa-bag-shopping mr-1.5"></i> ดูสินค้า REST Suite
                 </button>
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
                     <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
@@ -275,6 +278,12 @@ button:focus-visible,input:focus-visible {
         <div id="mobile-menu" class="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-2 shadow-xl">
             <button onclick="switchPage('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-600 flex items-center">
                 <i class="fa-solid fa-house w-8 text-amber-500"></i> หน้าแรก
+            </button>
+            <button onclick="switchPage('products'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-600 flex items-center">
+                <i class="fa-solid fa-box-open w-8 text-amber-500"></i> สินค้า
+            </button>
+            <button onclick="switchPage('ecosystem'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-600 flex items-center">
+                <i class="fa-solid fa-network-wired w-8 text-amber-500"></i> ระบบ
             </button>
             <button onclick="switchPage('exercises'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-600 flex items-center">
                 <i class="fa-solid fa-dumbbell w-8 text-amber-500"></i> ท่าบริหารร่างกาย
@@ -314,11 +323,11 @@ button:focus-visible,input:focus-visible {
                                 ถอดรหัสพฤติกรรมเสี่ยง ความเจ็บปวด และบรรเทาอาการปวดเมื่อยจากการใช้งานคอมพิวเตอร์และสมาร์ตโฟนเฉลี่ยสูงถึง <span class="text-amber-400 font-semibold">8.6 ชั่วโมง/วัน</span> ในกลุ่มนิสิต มมส
                             </p>
                             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                                <button onclick="switchPage('exercises')" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 transition-all transform hover:-translate-y-0.5">
-                                    <i class="fa-solid fa-person-walking mr-2"></i> ดูท่าบริหารแก้อาการ
+                                <button onclick="switchPage('products')" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 transition-all transform hover:-translate-y-0.5">
+                                    <i class="fa-solid fa-box-open mr-2"></i> ดูสินค้า REST Suite
                                 </button>
-                                <button onclick="switchPage('qa')" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-700 text-white border border-slate-700 font-medium px-8 py-4 rounded-2xl transition-all text-center">
-                                    <i class="fa-solid fa-circle-question mr-2"></i> คลังคำถาม & ความรู้
+                                <button onclick="switchPage('ecosystem')" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-700 text-white border border-slate-700 font-medium px-8 py-4 rounded-2xl transition-all text-center">
+                                    <i class="fa-solid fa-network-wired mr-2"></i> ระบบนิเวศสุขภาพ
                                 </button>
                             </div>
                         </div>
@@ -425,6 +434,142 @@ button:focus-visible,input:focus-visible {
                     </div>
                 </div>
             </section>
+        </section>
+
+        <!-- PAGE: PRODUCTS (สินค้า - ระบบเลือกไอคอนแสดงข้อมูลแบบสะอาดตา) -->
+        <section id="page-products" class="page-section py-16 lg:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                    <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
+                        REST Suite Product Lineup
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ผลิตภัณฑ์และอุปกรณ์สุขภาพอัจฉริยะ</h2>
+                    <p class="text-slate-600 text-base">คลิกเลือกไอคอนอุปกรณ์ด้านล่างเพื่อดูรายละเอียดรูปภาพและสเปกเชิงลึกทีละชิ้น</p>
+                </div>
+
+                <!-- Product Tab Selector Icons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <button onclick="selectProduct(0)" id="prod-btn-0" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-amber-400 bg-amber-50 text-slate-900 font-bold shadow-md transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <span class="text-sm sm:text-base">1. กระเป๋าเป้ (RestPack)</span>
+                    </button>
+                    <button onclick="selectProduct(1)" id="prod-btn-1" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg"><i class="fa-solid fa-head-side-cough"></i></div>
+                        <span class="text-sm sm:text-base">2. หมอนรองคอ (RestNeck)</span>
+                    </button>
+                    <button onclick="selectProduct(2)" id="prod-btn-2" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg"><i class="fa-solid fa-chair"></i></div>
+                        <span class="text-sm sm:text-base">3. หมอนรองนั่ง (RestSeat)</span>
+                    </button>
+                </div>
+
+                <!-- Product Display Card (Dynamic) -->
+                <div id="product-display-card" class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 items-center exercise-content-transition">
+                    <!-- Image Column -->
+                    <div class="lg:col-span-6 bg-slate-900 rounded-2xl p-4 flex items-center justify-center min-h-[360px] shadow-inner relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FACC15_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                        <img id="prod-img" src="assets/PRO1.jpg" alt="RestPack" class="w-full h-80 sm:h-96 object-contain rounded-xl relative z-10">
+                    </div>
+                    <!-- Details Column -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span id="prod-badge" class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-3.5 py-1.5 rounded-full">
+                                01 / กระเป๋าเป้อัจฉริยะ
+                            </span>
+                            <h3 id="prod-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">RestPack: Advanced Ergo-Posture Backpack</h3>
+                            <p id="prod-subtitle" class="text-sm text-slate-500 mt-1">กระเป๋าเป้ซัพพอร์ตสรีระพร้อมระบบนวดไฟฟ้าในตัว</p>
+                        </div>
+                        <ul id="prod-features" class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>การซัพพอร์ตสรีระ:</strong> มีเบาะรองหลังซัพพอร์ตเอว (Internal Lumbar Pad Support) พร้อมเมมโมรี่โฟมช่วยรองรับสรีระแผ่นหลัง และสายสะพายไหล่นุ่มปรับระดับได้</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ระบบนวดไฟฟ้า:</strong> ติดตั้งมอเตอร์สั่นสะเทือนไฟฟ้าขนาดจิ๋ว (Miniature Electric Vibration Motors) และจุดสัมผัสอิเล็กทรอนิกส์สำหรับนวดเน้นเฉพาะจุด</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ระบบพลังงาน & ช่องชาร์จ:</strong> มีชุดแบตเตอรี่ชาร์จไฟได้ในตัว รองรับการชาร์จผ่านพอร์ต USB-C</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green</li>
+                        </ul>
+                        <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                            <button onclick="switchPage('device')" class="flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-3.5 px-6 rounded-2xl shadow-md transition-all text-sm">
+                                <i class="fa-solid fa-wifi mr-2"></i> เชื่อมต่อและทดลองควบคุมอุปกรณ์
+                            </button>
+                            <button onclick="switchPage('ecosystem')" class="px-5 py-3.5 rounded-2xl border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-all text-sm">
+                                <i class="fa-solid fa-network-wired mr-2"></i> ดูระบบ Ecosystem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: ECOSYSTEM / SYSTEM (ระบบ) -->
+        <section id="page-ecosystem" class="page-section py-16 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
+                        REST Suite Architecture
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ระบบนิเวศสุขภาพและสรีระศาสตร์อัจฉริยะแบบครบวงจร</h2>
+                    <p class="text-slate-600 text-base">ออกแบบมาเพื่อเชื่อมโยงการทำงานของอุปกรณ์ทั้ง 3 ชิ้น (กระเป๋า, หมอนรองคอ, และเบาะรองนั่ง) ให้เป็นอันหนึ่งอันเดียวกัน เพื่อดูแลสุขภาพผู้ใช้งานอย่างครอบคลุม</p>
+                </div>
+
+                <!-- System Image Banner -->
+                <div class="mb-16 bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-3xl shadow-2xl overflow-hidden max-w-4xl mx-auto text-center">
+                    <div class="w-full h-80 sm:h-96 rounded-2xl overflow-hidden bg-slate-950/60 p-3 border border-white/10 flex items-center justify-center">
+                        <img src="assets/System.jpg" alt="REST Suite Ecosystem Architecture" class="w-full h-full object-contain rounded-xl">
+                    </div>
+                    <p class="text-xs text-slate-400 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> ภาพจำลองการทำงานประสานกันของระบบนิเวศสุขภาพ REST Suite</p>
+                </div>
+
+                <!-- Ecosystem Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">3-in-1 Combo Support</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">ดูแลและซัพพอร์ตสรีระร่างกายพร้อมกัน 3 จุดหลัก คือ คอ, หลัง/เอว และเชิงกราน/ก้นกบ</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Electric Massage Synergy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">ระบบนวดไฟฟ้าของทุกอุปกรณ์ทำงานสอดประสานกันเพื่อการผ่อนคลายที่สมบูรณ์แบบ</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Wired & Wireless Sync</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">รองรับการเชื่อมต่อทำงานร่วมกันได้ทั้งแบบไร้สายผ่าน Bluetooth Wireless Sync และแบบใช้สายเชื่อมต่อคอมโบ (Wired Linking Cables)</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Universal Mobile App Control</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">ควบคุมและปรับแต่งโหมดการนวดของทุกอุปกรณ์ได้จากแอปพลิเคชันเดียวบนมือถือ เช่น โหมด Combo Active Therapy</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-battery-full"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Multi-Device Recharge & Shared Energy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">ระบบชาร์จและแชร์พลังงานระหว่างอุปกรณ์ผ่านพอร์ตเสริมและ USB-C เพิ่มความสะดวกในการพกพา</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg space-y-4 hover:-translate-y-1 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">REST Color Collection</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">โทนสีคุมโทนยอดนิยม 4 สี ได้แก่ Classic Black, Navy Blue, Space Grey และ Forest Green</p>
+                    </div>
+
+                </div>
+            </div>
         </section>
 
         <!-- PAGE 2: EXERCISES / STRETCHING GUIDE -->
@@ -549,7 +694,7 @@ button:focus-visible,input:focus-visible {
                         Smart Device
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">อุปกรณ์ของฉัน</h2>
-                    <p class="text-slate-600">เชื่อมต่อกระเป๋านวดอัจฉริยะเพื่อตรวจสอบแบตเตอรี่ สถานะการทำงาน และโหมดการนวด</p>
+                    <p class="text-slate-600">เชื่อมต่อกระเป๋านวดอัจฉริยะ REST Suite เพื่อตรวจสอบแบตเตอรี่ สถานะการทำงาน และโหมดการนวด</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -563,8 +708,8 @@ button:focus-visible,input:focus-visible {
                                         <i class="fa-solid fa-bag-shopping"></i>
                                     </div>
                                     <div>
-                                        <p class="text-xs uppercase tracking-widest text-amber-300 font-semibold">MSU Anti-OS Device</p>
-                                        <h3 class="text-2xl font-bold">กระเป๋านวดอัจฉริยะ</h3>
+                                        <p class="text-xs uppercase tracking-widest text-amber-300 font-semibold">REST Suite Ecosystem</p>
+                                        <h3 class="text-2xl font-bold">กระเป๋านวดอัจฉริยะ (RestPack)</h3>
                                         <p id="device-name" class="text-sm text-slate-300 mt-1">ยังไม่ได้เชื่อมต่อ</p>
                                     </div>
                                 </div>
@@ -620,7 +765,7 @@ button:focus-visible,input:focus-visible {
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-xl text-slate-900">โหมดการนวด</h3>
-                                    <p class="text-xs text-slate-500">เลือกโหมดที่ต้องการ</p>
+                                    <p class="text-xs text-slate-500">เลือกโหมด Combo Active Therapy</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
@@ -655,7 +800,7 @@ button:focus-visible,input:focus-visible {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-900">ระบบแจ้งเตือนแบบไม่ขัดจังหวะ</h4>
-                                    <p id="device-notice" class="text-sm text-slate-600 mt-1 leading-relaxed">เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตร</p>
+                                    <p id="device-notice" class="text-sm text-slate-600 mt-1 leading-relaxed">เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตรผ่านระบบ Ecosystem</p>
                                 </div>
                             </div>
                         </div>
@@ -663,7 +808,7 @@ button:focus-visible,input:focus-visible {
                 </div>
 
                 <div class="mt-10 text-center text-xs text-slate-400">
-                    * หน้านี้เป็นต้นแบบการเชื่อมต่ออุปกรณ์ สำหรับการใช้งานจริงต้องเชื่อมต่อ Bluetooth/BLE กับฮาร์ดแวร์ของกระเป๋า
+                    * หน้านี้เป็นต้นแบบการเชื่อมต่ออุปกรณ์ สำหรับการใช้งานจริงต้องเชื่อมต่อ Bluetooth/BLE กับฮาร์ดแวร์ของ REST Suite
                 </div>
             </div>
         </section>
@@ -709,7 +854,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-2" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                นิสิตสนใจ <strong>เบาะรองหลังและที่วางเท้า</strong> เพื่อปรับท่านั่งให้ถูกต้อง รองลงมาคืออุปกรณ์นวด ได้แก่ <strong>กระเป๋านวดหลัง/กระเป๋านวด ที่นวดไหล่ เก้าอี้นวดปรับเอนนอน ยาทาแบบไม่ดูแก่</strong> และเสื้อรัดที่มีประคบยาแก้ปวดที่ใช้งานได้จริงในชีวิตประจำวัน
+                                นิสิตสนใจ <strong>เบาะรองหลังและที่วางเท้า</strong> เพื่อปรับท่านั่งให้ถูกต้อง รองลงมาคืออุปกรณ์นวด ได้แก่ <strong>กระเป๋านวดหลัง/กระเป๋านวด ที่นวดไหล่ เก้าอี้นวดปรับเอนนอน ยาทาแบบไม่ดูแก่</strong> และเสื้อรัดที่มีประคบยาแก้ปวดที่ใช้งานได้จริงในชีวิตประจำวัน รวมถึงชุด REST Suite ทั้ง 3 ชิ้น
                             </div>
                         </div>
                     </div>
@@ -741,7 +886,7 @@ button:focus-visible,input:focus-visible {
                         </button>
                         <div id="acc-body-4" class="accordion-body px-6 pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                             <div>
-                                นิสิตชอบสไตล์ <strong>Minimalist เรียบง่าย สบายตา เข้ากับโต๊ะทำงาน</strong> ใช้โทนสีพาสเทล สีขาว สีครีม สีเขียว สีชมพู หรือสีเข้มคลาสสิกอย่าง สีดำ น้ำตาล เทา ผิวสัมผัสนุ่ม ทำความสะอาดง่าย และรูปลักษณ์ทันสมัยไม่ดูเหมือนอุปกรณ์ทางการแพทย์จนเกินไป
+                                นิสิตชอบสไตล์ <strong>Minimalist เรียบง่าย สบายตา เข้ากับโต๊ะทำงาน</strong> ใช้โทนสีพาสเทล สีขาว สีครีม สีเขียว สีชมพู หรือสีเข้มคลาสสิกอย่าง สีดำ น้ำตาล เทา (เช่น REST Color Collection: Classic Black, Navy Blue, Space Grey, Forest Green) ผิวสัมผัสนุ่ม ทำความสะอาดง่าย และรูปลักษณ์ทันสมัยไม่ดูเหมือนอุปกรณ์ทางการแพทย์จนเกินไป
                             </div>
                         </div>
                     </div>
@@ -929,7 +1074,7 @@ button:focus-visible,input:focus-visible {
                         <div class="w-8 h-8 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-sm">
                             <i class="fa-solid fa-heart-pulse"></i>
                         </div>
-                        <span>MSU Anti-Office Syndrome</span>
+                        <span>MSU Anti-Office Syndrome & REST Suite</span>
                     </div>
                     <p class="text-xs text-slate-400">มหาวิทยาลัยมหาสารคาม (Mahasarakham University) ตำบลขามเรียง อำเภอกันทรวิชัย จังหวัดมหาสารคาม</p>
                 </div>
@@ -943,6 +1088,88 @@ button:focus-visible,input:focus-visible {
     <!-- JavaScript for Page Transition & Interactions -->
     <script>
         
+        // Products Data Array for Interactive Selector
+        const productsData = [
+            {
+                badge: "01 / กระเป๋าเป้อัจฉริยะ",
+                title: "RestPack: Advanced Ergo-Posture Backpack",
+                subtitle: "กระเป๋าเป้ซัพพอร์ตสรีระพร้อมระบบนวดไฟฟ้าในตัว",
+                image: "assets/PRO1.jpg",
+                features: [
+                    "<strong>การซัพพอร์ตสรีระ:</strong> มีเบาะรองหลังซัพพอร์ตเอว (Internal Lumbar Pad Support) พร้อมเมมโมรี่โฟมช่วยรองรับสรีระแผ่นหลัง และสายสะพายไหล่นุ่มปรับระดับได้",
+                    "<strong>ระบบนวดไฟฟ้า:</strong> ติดตั้งมอเตอร์สั่นสะเทือนไฟฟ้าขนาดจิ๋ว (Miniature Electric Vibration Motors) และจุดสัมผัสอิเล็กทรอนิกส์สำหรับนวดเน้นเฉพาะจุด",
+                    "<strong>ระบบพลังงาน:</strong> มีชุดแบตเตอรี่ชาร์จไฟได้ในตัว (Integrated Rechargeable Battery Unit) พร้อมพอร์ต USB-C",
+                    "<strong>ฟังก์ชันพิเศษ:</strong> มาพร้อมระบบล็อกกับพนักพิงเก้าอี้ เพื่อเปลี่ยนกระเป๋าให้เป็นเบาะนวดติดเก้าอี้ได้",
+                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green"
+                ]
+            },
+            {
+                badge: "02 / หมอนรองคออัจฉริยะ",
+                title: "RestNeck: Smart Massage Neck Pillow",
+                subtitle: "หมอนรองคอไฟฟ้าอัจฉริยะเชื่อมต่อแอปพลิเคชันมือถือ",
+                image: "assets/PRO2.jpg",
+                features: [
+                    "<strong>การซัพพอร์ตสรีระ:</strong> ออกแบบตามหลักสรีระศาสตร์เพื่อรองรับต้นคอและกระดูกสันหลัง (Cervical Spine Support) โดยใช้โครงสร้างเมมโมรี่โฟมซับสรีระ",
+                    "<strong>ระบบนวดอัจฉริยะ:</strong> มอเตอร์นวดไฟฟ้าแบบสั่นและนวดหมุน (Kneading & Vibration Electric Motors) ทำงานร่วมกับหัวนวดไฟฟ้าสัมผัสนุ่ม",
+                    "<strong>การควบคุมผ่านแอป:</strong> เชื่อมต่อบลูทูธ (Bluetooth Sync) ควบคุมระดับความแรงและโหมดการนวดผ่าน Mobile App เช่น Gentle, Deep และ Stretch",
+                    "<strong>การพกพาและชาร์จไฟ:</strong> ดีไซน์มินิมอล พับเก็บได้ (Foldable Design) ชาร์จไวด้วยพอร์ต USB-C Quick Charge พร้อมปุ่มเปิด-ปิดง่าย",
+                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey, Pastel Pink และ Forest Green"
+                ]
+            },
+            {
+                badge: "03 / หมอนรองนั่งอัจฉริยะ",
+                title: "RestSeat: Smart Massage Seat Cushion",
+                subtitle: "หมอนรองนั่งเพื่อสุขภาพและซัพพอร์ตเชิงกราน",
+                image: "assets/PRO3.jpg",
+                features: [
+                    "<strong>การซัพพอร์ตสรีระ:</strong> รองรับเชิงกรานและกระดูกสันหลังส่วนล่าง (Pelvic & Lower Spine Support) ด้วยวัสดุ Ergonomic Memory Foam นุ่มสบาย",
+                    "<strong>ระบบนวดและการเชื่อมต่อ:</strong> มอเตอร์สั่นสะเทือนไฟฟ้าจิ๋ว รองรับระบบ Ecosystem Combo เชื่อมต่อการนวดร่วมกับกระเป๋าและหมอนรองคอได้ทั้ง Bluetooth และสายต่อคอมโบ",
+                    "<strong>การควบคุมผ่านแอป:</strong> ปรับแต่งรูปแบบ จังหวะ (Pattern) และความเร็ว (Speed) การนวดได้ละเอียดผ่าน Mobile App",
+                    "<strong>แบตเตอรี่และพอร์ตเสริม:</strong> มีแบตเตอรี่และ Control Hub ในตัว พร้อมพอร์ต USB-C และ Extension Combo Port",
+                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green"
+                ]
+            }
+        ];
+
+        function selectProduct(index) {
+            const p = productsData[index];
+            
+            // Highlight selected tab button
+            for (let i = 0; i < productsData.length; i++) {
+                const btn = document.getElementById('prod-btn-' + i);
+                const iconBox = btn.querySelector('div');
+                if (i === index) {
+                    btn.className = "prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-amber-400 bg-amber-50 text-slate-900 font-bold shadow-md transition-all";
+                    iconBox.className = "w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg";
+                } else {
+                    btn.className = "prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all";
+                    iconBox.className = "w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg";
+                }
+            }
+
+            // Animate card content change
+            const card = document.getElementById('product-display-card');
+            card.classList.remove('exercise-content-transition');
+            void card.offsetWidth;
+            card.classList.add('exercise-content-transition');
+
+            // Update content
+            document.getElementById('prod-badge').innerText = p.badge;
+            document.getElementById('prod-title').innerText = p.title;
+            document.getElementById('prod-subtitle').innerText = p.subtitle;
+            document.getElementById('prod-img').src = p.image;
+            document.getElementById('prod-img').alt = p.title;
+
+            const featuresList = document.getElementById('prod-features');
+            featuresList.innerHTML = '';
+            p.features.forEach(feat => {
+                const li = document.createElement('li');
+                li.className = "flex items-start";
+                li.innerHTML = `<i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i> <span>${feat}</span>`;
+                featuresList.appendChild(li);
+            });
+        }
+
         // Exercise Data Array (Updated with image paths from assets folder)
         const exercises = [
             {
@@ -1025,7 +1252,7 @@ button:focus-visible,input:focus-visible {
             if (deviceConnected) {
                 badge.className = 'self-start sm:self-auto px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold';
                 badge.innerHTML = '<i class="fa-solid fa-link mr-1"></i> เชื่อมต่อแล้ว';
-                name.textContent = 'Smart Massage Bag • BLE';
+                name.textContent = 'Smart Massage Bag (RestPack) • BLE';
                 work.textContent = massageRunning ? 'กำลังนวด • ' + massageMode : 'พร้อมใช้งาน';
                 notice.textContent = massageRunning ? 'กำลังทำงานในโหมด ' + massageMode + ' สามารถหยุดได้จากปุ่ม Power' : 'อุปกรณ์พร้อมใช้งาน สามารถเลือกโหมดการนวดได้';
                 connectBtn.innerHTML = '<i class="fa-solid fa-link-slash mr-2"></i> ยกเลิกการเชื่อมต่อ';
@@ -1040,7 +1267,7 @@ button:focus-visible,input:focus-visible {
                 badge.innerHTML = '<i class="fa-solid fa-link-slash mr-1"></i> ไม่ได้เชื่อมต่อ';
                 name.textContent = 'ยังไม่ได้เชื่อมต่อ';
                 work.textContent = 'ยังไม่ได้เชื่อมต่อ';
-                notice.textContent = 'เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตร';
+                notice.textContent = 'เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตรผ่านระบบ Ecosystem';
                 connectBtn.innerHTML = '<i class="fa-solid fa-bluetooth mr-2"></i> เชื่อมต่ออุปกรณ์';
                 connectBtn.className = 'flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-3.5 rounded-2xl transition-all shadow-md';
                 battery.textContent = '--%';
@@ -1265,14 +1492,13 @@ button:focus-visible,input:focus-visible {
         }
 
         // Next Exercise
-        function nextExercise() {
-            currentExIndex = (currentExIndex + 1) % exercises.length;
-            selectExercise(currentExIndex);
-        }
-
         // Previous Exercise
         function prevExercise() {
             currentExIndex = (currentExIndex - 1 + exercises.length) % exercises.length;
+            selectExercise(currentExIndex);
+        }
+        function nextExercise() {
+            currentExIndex = (currentExIndex + 1) % exercises.length;
             selectExercise(currentExIndex);
         }
     </script>
