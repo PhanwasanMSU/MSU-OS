@@ -28,138 +28,6 @@
                 }
             }
         }
-
-
-        /* =========================================================
-           SMART ECOSYSTEM - MULTI DEVICE LOGIC
-           เพิ่มใหม่เท่านั้น ไม่แทนที่ระบบเดิม
-           ========================================================= */
-        let neckConnected = false;
-        let seatConnected = false;
-        let chairMassageModeActive = false;
-
-        function updateEcoDevicesUI() {
-            const states = {
-                pack: deviceConnected,
-                neck: neckConnected,
-                seat: seatConnected
-            };
-
-            const count = Object.values(states).filter(Boolean).length;
-            const countEl = document.getElementById('eco-connected-count');
-            const dotEl = document.getElementById('eco-connected-dot');
-
-            if (countEl) {
-                countEl.textContent = 'เชื่อมต่อแล้ว ' + count + ' / 3 อุปกรณ์';
-            }
-
-            if (dotEl) {
-                dotEl.classList.toggle('connected', count > 0);
-            }
-
-            Object.keys(states).forEach(function(type) {
-                const card = document.getElementById('eco-card-' + type);
-                const status = document.getElementById('eco-status-' + type);
-                const button = document.getElementById('eco-btn-' + type);
-
-                if (!card || !status || !button) return;
-
-                if (states[type]) {
-                    card.classList.add('is-connected');
-                    status.className = 'px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold';
-                    status.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i>เชื่อมต่อแล้ว';
-                    button.textContent = 'ยกเลิกการเชื่อมต่อ';
-                    button.className = 'w-full mt-4 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all';
-                } else {
-                    card.classList.remove('is-connected');
-                    status.className = 'px-2.5 py-1 rounded-full bg-slate-200 text-slate-600 text-xs font-bold';
-                    status.innerHTML = 'ไม่ได้เชื่อมต่อ';
-                    button.textContent = 'เชื่อมต่อ';
-
-                    if (type === 'neck') {
-                        button.className = 'w-full mt-4 px-4 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-sm transition-all';
-                    } else if (type === 'seat') {
-                        button.className = 'w-full mt-4 px-4 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition-all';
-                    } else {
-                        button.className = 'w-full mt-4 px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold text-sm transition-all';
-                    }
-                }
-            });
-
-            const specialBtn = document.getElementById('eco-special-btn');
-            const specialStatus = document.getElementById('eco-special-status');
-            const specialHint = document.getElementById('eco-special-hint');
-
-            if (specialBtn && specialStatus && specialHint) {
-                if (chairMassageModeActive) {
-                    specialBtn.innerHTML = '<i class="fa-solid fa-stop mr-2"></i> ปิดโหมด';
-                    specialBtn.className = 'px-5 py-3 rounded-2xl bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold text-sm shadow-md transition-all';
-                    specialStatus.textContent = 'กำลังทำงาน: RestNeck + RestSeat';
-                    specialHint.textContent = 'ระบบกำลังนวดพร้อมกันทั้ง 2 อุปกรณ์';
-                    specialBtn.closest('.eco-special-mode')?.classList.add('active');
-                } else {
-                    specialBtn.innerHTML = '<i class="fa-solid fa-power-off mr-2"></i> เปิดโหมด';
-                    specialBtn.className = 'px-5 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all';
-                    specialStatus.textContent = 'เปิดพร้อมกัน: RestNeck + RestSeat';
-                    specialHint.textContent = 'กดครั้งเดียว ระบบจะเชื่อมต่อ RestNeck + RestSeat และเปิดพร้อมกัน';
-                    specialBtn.closest('.eco-special-mode')?.classList.remove('active');
-                }
-            }
-        }
-
-        function toggleEcoDevice(type) {
-            if (type === 'pack') {
-                toggleDeviceConnection();
-                setTimeout(updateEcoDevicesUI, 50);
-                return;
-            }
-
-            if (type === 'neck') {
-                neckConnected = !neckConnected;
-            }
-
-            if (type === 'seat') {
-                seatConnected = !seatConnected;
-            }
-
-            if (!neckConnected || !seatConnected) {
-                chairMassageModeActive = false;
-            }
-
-            updateEcoDevicesUI();
-        }
-
-        function toggleChairMassageMode() {
-            // เมื่อกดโหมดเก้าอี้นวด ระบบจะเชื่อมต่อ RestNeck + RestSeat ให้อัตโนมัติ
-            // เพื่อให้ผู้ใช้กดเพียงครั้งเดียวแล้วเริ่มใช้งานได้ทันที
-            if (!chairMassageModeActive) {
-                neckConnected = true;
-                seatConnected = true;
-                chairMassageModeActive = true;
-            } else {
-                chairMassageModeActive = false;
-            }
-
-            updateEcoDevicesUI();
-
-            const notice = document.getElementById('device-notice');
-            if (notice) {
-                notice.textContent = chairMassageModeActive
-                    ? 'โหมดเก้าอี้นวดกำลังทำงาน — ระบบเปิด RestNeck และ RestSeat ให้อัตโนมัติ และสั่งงานพร้อมกัน'
-                    : 'ปิดโหมดเก้าอี้นวดแล้ว — RestNeck และ RestSeat ยังคงเชื่อมต่ออยู่และสามารถใช้งานแยกกันได้';
-            }
-        }
-
-        // Sync the added panel with the original RestPack connection state.
-        const originalUpdateDeviceUI = updateDeviceUI;
-        updateDeviceUI = function() {
-            originalUpdateDeviceUI();
-            updateEcoDevicesUI();
-        };
-
-        // Initial state
-        setTimeout(updateEcoDevicesUI, 100);
-
     </script>
     <style>
 html { scroll-behavior: smooth; }
@@ -235,6 +103,26 @@ body {
 button { -webkit-tap-highlight-color: transparent; }
 button:active { transform: scale(.96); }
 
+/* MODAL ANIMATION */
+.modal-backdrop {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    transform: scale(0.95) translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(.22,1,.36,1), opacity 0.3s ease;
+}
+.modal-backdrop.open .modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
 /* HOME CARD ENTRANCE */
 .animate-card {
     opacity: 0;
@@ -244,16 +132,6 @@ button:active { transform: scale(.96); }
     from { opacity: 0; transform: translateY(25px); }
     to { opacity: 1; transform: translateY(0); }
 }
-.page-section.active .animate-card:nth-child(1){animation-delay:.08s}
-.page-section.active .animate-card:nth-child(2){animation-delay:.16s}
-.page-section.active .animate-card:nth-child(3){animation-delay:.24s}
-.page-section.active .animate-card:nth-child(4){animation-delay:.32s}
-.page-section.active .animate-card:nth-child(5){animation-delay:.40s}
-.page-section.active .animate-card:nth-child(6){animation-delay:.48s}
-.page-section.active .animate-card:nth-child(7){animation-delay:.56s}
-.page-section.active .animate-card:nth-child(8){animation-delay:.64s}
-.page-section.active .animate-card:nth-child(9){animation-delay:.72s}
-.page-section.active .animate-card:nth-child(10){animation-delay:.80s}
 
 /* EXERCISE */
 .exercise-content-transition {
@@ -350,190 +228,6 @@ button:focus-visible,input:focus-visible {
         scroll-behavior:auto !important;
     }
 }
-
-
-/* =========================================================
-   PRODUCT PRESENTATION MODAL - ADDITION ONLY
-   ========================================================= */
-.product-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity .25s ease, visibility .25s ease;
-}
-.product-modal.show {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-.product-modal-box {
-    width: min(1000px, 95vw);
-    max-height: 90vh;
-    overflow-y: auto;
-    background: #fff;
-    border-radius: 28px;
-    border: 1px solid rgba(226,232,240,.9);
-    box-shadow: 0 30px 80px rgba(15,23,42,.35);
-    transform: translateY(25px) scale(.96);
-    transition: transform .3s cubic-bezier(.22,1,.36,1);
-    position: relative;
-}
-.product-modal.show .product-modal-box {
-    transform: translateY(0) scale(1);
-}
-.product-modal-close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    z-index: 10;
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    border: 1px solid #e2e8f0;
-    background: rgba(255,255,255,.95);
-    color: #475569;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all .2s ease;
-}
-.product-modal-close:hover {
-    background: #fef3c7;
-    color: #d97706;
-    transform: rotate(5deg);
-}
-.product-modal-image {
-    background: linear-gradient(135deg, #0f172a, #1e293b, #451a03);
-    min-height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    position: relative;
-    overflow: hidden;
-}
-.product-modal-image::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: .12;
-    background-image: radial-gradient(#FACC15 1px, transparent 1px);
-    background-size: 14px 14px;
-}
-.product-modal-image img {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 390px;
-    object-fit: contain;
-    border-radius: 18px;
-}
-.product-modal-content {
-    padding: 38px;
-}
-.product-modal-feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 13px;
-    color: #475569;
-    font-size: 14px;
-    line-height: 1.7;
-}
-.product-modal-feature i {
-    color: #f59e0b;
-    margin-top: 5px;
-    flex-shrink: 0;
-}
-.product-modal-box::-webkit-scrollbar { width: 7px; }
-.product-modal-box::-webkit-scrollbar-track { background: #f8fafc; }
-.product-modal-box::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
-@media (max-width: 768px) {
-    .product-modal { padding: 12px; }
-    .product-modal-box { border-radius: 22px; }
-    .product-modal-image { min-height: 260px; padding: 20px; }
-    .product-modal-image img { height: 250px; }
-    .product-modal-content { padding: 24px; }
-}
-
-
-/* =========================================================
-   SMART ECOSYSTEM - MULTI DEVICE ADDITION
-   เพิ่มใหม่เท่านั้น
-   ========================================================= */
-.eco-device-card {
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-.eco-device-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 35px rgba(15,23,42,.10);
-}
-.eco-device-card.is-connected {
-    border-color: rgba(16,185,129,.45);
-}
-.eco-device-icon {
-    transition: transform .3s ease, box-shadow .3s ease;
-}
-.eco-device-card.is-connected .eco-device-icon {
-    box-shadow: 0 0 0 6px rgba(16,185,129,.10);
-}
-.eco-status-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    background: #94a3b8;
-    display: inline-block;
-}
-.eco-status-dot.connected {
-    background: #10b981;
-    box-shadow: 0 0 0 4px rgba(16,185,129,.12);
-}
-.eco-special-mode {
-    position: relative;
-    overflow: hidden;
-}
-.eco-special-mode::before {
-    content: "";
-    position: absolute;
-    inset: -60%;
-    background: radial-gradient(circle, rgba(250,204,21,.22), transparent 55%);
-    opacity: 0;
-    transition: opacity .3s ease;
-}
-.eco-special-mode:hover::before,
-.eco-special-mode.active::before {
-    opacity: 1;
-}
-.eco-special-mode.active {
-    border-color: #facc15;
-    background: #fffbeb;
-}
-.eco-special-mode > * {
-    position: relative;
-    z-index: 1;
-}
-@keyframes eco-pulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,.18); }
-    50% { box-shadow: 0 0 0 9px rgba(16,185,129,0); }
-}
-.eco-device-card.is-connected .eco-status-dot {
-    animation: eco-pulse 2s infinite;
-}
-@media (max-width: 640px) {
-    .eco-device-card:hover { transform: none; }
-}
-
 </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col justify-between selection:bg-msuGold selection:text-slate-900">
@@ -752,67 +446,113 @@ button:focus-visible,input:focus-visible {
             </section>
         </section>
 
-        <!-- PAGE: PRODUCTS (สินค้า - ระบบเลือกไอคอนแสดงข้อมูลแบบสะอาดตา) -->
+        <!-- PAGE: PRODUCTS (สินค้า - ระบบกดไอคอนเด้ง Popup Modal) -->
         <section id="page-products" class="page-section py-16 lg:py-24">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                     <span class="text-amber-600 font-semibold text-sm tracking-wider uppercase bg-amber-50 px-4 py-1.5 rounded-full inline-block">
                         REST Suite Product Lineup
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">ผลิตภัณฑ์และอุปกรณ์สุขภาพอัจฉริยะ</h2>
-                    <p class="text-slate-600 text-base">คลิกเลือกไอคอนอุปกรณ์ด้านล่างเพื่อดูรายละเอียดรูปภาพและสเปกเชิงลึกทีละชิ้น</p>
+                    <p class="text-slate-600 text-base">คลิกที่การ์ดไอคอนอุปกรณ์แต่ละชิ้นด้านล่างเพื่อเปิดหน้าต่างแสดงรายละเอียดและภาพประกอบสำหรับพรีเซนต์</p>
                 </div>
 
-                <!-- Product Tab Selector Icons -->
-                <div class="flex flex-wrap justify-center gap-4 mb-10">
-                    <button onclick="selectProduct(0)" id="prod-btn-0" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-amber-400 bg-amber-50 text-slate-900 font-bold shadow-md transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <span class="text-sm sm:text-base">1. กระเป๋าเป้ (RestPack)</span>
-                    </button>
-                    <button onclick="selectProduct(1)" id="prod-btn-1" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg"><i class="fa-solid fa-head-side-cough"></i></div>
-                        <span class="text-sm sm:text-base">2. หมอนรองคอ (RestNeck)</span>
-                    </button>
-                    <button onclick="selectProduct(2)" id="prod-btn-2" class="prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all">
-                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg"><i class="fa-solid fa-chair"></i></div>
-                        <span class="text-sm sm:text-base">3. หมอนรองนั่ง (RestSeat)</span>
-                    </button>
-                </div>
-
-                <!-- Product Display Card (Dynamic) -->
-                <div id="product-display-card" class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 items-center exercise-content-transition">
-                    <!-- Image Column -->
-                    <div class="lg:col-span-6 bg-slate-900 rounded-2xl p-4 flex items-center justify-center min-h-[360px] shadow-inner relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FACC15_1px,transparent_1px)] [background-size:12px_12px]"></div>
-                        <img id="prod-img" src="assets/PRO1.jpg" alt="RestPack" class="w-full h-80 sm:h-96 object-contain rounded-xl relative z-10">
-                    </div>
-                    <!-- Details Column -->
-                    <div class="lg:col-span-6 space-y-6">
-                        <div>
-                            <span id="prod-badge" class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-3.5 py-1.5 rounded-full">
-                                01 / กระเป๋าเป้อัจฉริยะ
-                            </span>
-                            <h3 id="prod-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">RestPack: Advanced Ergo-Posture Backpack</h3>
-                            <p id="prod-subtitle" class="text-sm text-slate-500 mt-1">กระเป๋าเป้ซัพพอร์ตสรีระพร้อมระบบนวดไฟฟ้าในตัว</p>
+                <!-- 3 Product Clickable Icon Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- PRO 1 Card -->
+                    <div onclick="openProductModal(0)" class="bg-white p-8 rounded-3xl border-2 border-slate-200 hover:border-amber-400 shadow-lg hover:shadow-2xl transition-all cursor-pointer group text-center space-y-5 hover:-translate-y-2">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-3xl group-hover:bg-amber-400 group-hover:text-slate-900 transition-all shadow-md">
+                            <i class="fa-solid fa-bag-shopping"></i>
                         </div>
-                        <ul id="prod-features" class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>การซัพพอร์ตสรีระ:</strong> มีเบาะรองหลังซัพพอร์ตเอว (Internal Lumbar Pad Support) พร้อมเมมโมรี่โฟมช่วยรองรับสรีระแผ่นหลัง และสายสะพายไหล่นุ่มปรับระดับได้</li>
-                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ระบบนวดไฟฟ้า:</strong> ติดตั้งมอเตอร์สั่นสะเทือนไฟฟ้าขนาดจิ๋ว (Miniature Electric Vibration Motors) และจุดสัมผัสอิเล็กทรอนิกส์สำหรับนวดเน้นเฉพาะจุด</li>
-                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ระบบพลังงาน & ช่องชาร์จ:</strong> มีชุดแบตเตอรี่ชาร์จไฟได้ในตัว รองรับการชาร์จผ่านพอร์ต USB-C</li>
-                            <li class="flex items-start"><i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i><strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green</li>
-                        </ul>
-                        <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                            <button onclick="switchPage('device')" class="flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-3.5 px-6 rounded-2xl shadow-md transition-all text-sm">
-                                <i class="fa-solid fa-wifi mr-2"></i> เชื่อมต่อและทดลองควบคุมอุปกรณ์
-                            </button>
-                            <button onclick="switchPage('ecosystem')" class="px-5 py-3.5 rounded-2xl border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-all text-sm">
-                                <i class="fa-solid fa-network-wired mr-2"></i> ดูระบบ Ecosystem
-                            </button>
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">01 / กระเป๋าเป้</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors">RestPack: Advanced Ergo-Posture Backpack</h3>
+                        </div>
+                        <p class="text-xs text-slate-500">คลิกเพื่อดูรายละเอียดและภาพผลิตภัณฑ์เชิงลึก</p>
+                        <div class="pt-2">
+                            <span class="inline-flex items-center text-xs font-semibold text-amber-600 group-hover:underline">
+                                ดูข้อมูลผลิตภัณฑ์ <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- PRO 2 Card -->
+                    <div onclick="openProductModal(1)" class="bg-white p-8 rounded-3xl border-2 border-slate-200 hover:border-amber-400 shadow-lg hover:shadow-2xl transition-all cursor-pointer group text-center space-y-5 hover:-translate-y-2">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-3xl group-hover:bg-amber-400 group-hover:text-slate-900 transition-all shadow-md">
+                            <i class="fa-solid fa-head-side-cough"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">02 / หมอนรองคอ</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors">RestNeck: Smart Massage Neck Pillow</h3>
+                        </div>
+                        <p class="text-xs text-slate-500">คลิกเพื่อดูรายละเอียดและภาพผลิตภัณฑ์เชิงลึก</p>
+                        <div class="pt-2">
+                            <span class="inline-flex items-center text-xs font-semibold text-amber-600 group-hover:underline">
+                                ดูข้อมูลผลิตภัณฑ์ <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- PRO 3 Card -->
+                    <div onclick="openProductModal(2)" class="bg-white p-8 rounded-3xl border-2 border-slate-200 hover:border-amber-400 shadow-lg hover:shadow-2xl transition-all cursor-pointer group text-center space-y-5 hover:-translate-y-2">
+                        <div class="w-20 h-20 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-3xl group-hover:bg-amber-400 group-hover:text-slate-900 transition-all shadow-md">
+                            <i class="fa-solid fa-chair"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">03 / หมอนรองนั่ง</span>
+                            <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-600 transition-colors">RestSeat: Smart Massage Seat Cushion</h3>
+                        </div>
+                        <p class="text-xs text-slate-500">คลิกเพื่อดูรายละเอียดและภาพผลิตภัณฑ์เชิงลึก</p>
+                        <div class="pt-2">
+                            <span class="inline-flex items-center text-xs font-semibold text-amber-600 group-hover:underline">
+                                ดูข้อมูลผลิตภัณฑ์ <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- PRODUCT DETAIL POPUP MODAL -->
+        <div id="product-modal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+            <div class="modal-content bg-white w-full max-w-4xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden relative max-h-[90vh] flex flex-col">
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
+                    <span id="modal-badge" class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-3 py-1 rounded-full">
+                        01 / กระเป๋าเป้อัจฉริยะ
+                    </span>
+                    <button onclick="closeProductModal()" class="w-10 h-10 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <!-- Modal Body (Grid with Image & Details) -->
+                <div class="p-6 sm:p-8 overflow-y-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Image Box -->
+                    <div class="lg:col-span-6 bg-slate-900 rounded-2xl p-4 flex items-center justify-center min-h-[320px] shadow-inner relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FACC15_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                        <img id="modal-img" src="assets/PRO1.jpg" alt="Product Image" class="w-full h-72 sm:h-80 object-contain rounded-xl relative z-10">
+                    </div>
+                    <!-- Text Details Box -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div>
+                            <h3 id="modal-title" class="text-2xl font-extrabold text-slate-900">RestPack: Advanced Ergo-Posture Backpack</h3>
+                            <p id="modal-subtitle" class="text-xs text-amber-600 font-semibold mt-1">กระเป๋าเป้ซัพพอร์ตสรีระพร้อมระบบนวดไฟฟ้าในตัว</p>
+                        </div>
+                        <ul id="modal-features" class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <!-- Populated dynamically -->
+                        </ul>
+                        <div class="pt-3 flex flex-col sm:flex-row gap-3">
+                            <button onclick="closeProductModal(); switchPage('device');" class="flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-3 px-5 rounded-xl text-xs transition-all shadow-md">
+                                <i class="fa-solid fa-wifi mr-1.5"></i> เชื่อมต่อและทดลองควบคุมอุปกรณ์
+                            </button>
+                            <button onclick="closeProductModal(); switchPage('ecosystem');" class="px-4 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-all text-xs">
+                                <i class="fa-solid fa-network-wired mr-1.5"></i> ดูระบบ Ecosystem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- PAGE: ECOSYSTEM / SYSTEM (ระบบ) -->
         <section id="page-ecosystem" class="page-section py-16 lg:py-24">
@@ -1123,121 +863,6 @@ button:focus-visible,input:focus-visible {
                     </div>
                 </div>
 
-
-
-                <!-- =====================================================
-                     SMART ECOSYSTEM - MULTI DEVICE PANEL
-                     เพิ่มใหม่โดยไม่ลบส่วนเดิม
-                     ===================================================== -->
-                <div class="mt-8">
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg p-6 sm:p-8">
-
-                        <!-- Connection Summary -->
-                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
-                                    <i class="fa-solid fa-network-wired"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">REST Suite Ecosystem</p>
-                                    <h3 class="text-xl font-bold text-slate-900">อุปกรณ์ที่เชื่อมต่ออยู่</h3>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-emerald-50 border border-emerald-100">
-                                <span id="eco-connected-dot" class="eco-status-dot connected"></span>
-                                <div>
-                                    <p class="text-xs text-slate-500">สถานะระบบ</p>
-                                    <p id="eco-connected-count" class="font-extrabold text-emerald-700">เชื่อมต่อแล้ว 0 / 3 อุปกรณ์</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Device cards -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                            <!-- RestPack -->
-                            <div id="eco-card-pack" class="eco-device-card bg-slate-50 rounded-2xl border border-slate-200 p-5">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div id="eco-icon-pack" class="eco-device-icon w-12 h-12 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center text-xl">
-                                        <i class="fa-solid fa-bag-shopping"></i>
-                                    </div>
-                                    <span id="eco-status-pack" class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-600 text-xs font-bold">ไม่ได้เชื่อมต่อ</span>
-                                </div>
-                                <h4 class="font-bold text-slate-900 mt-4">RestPack</h4>
-                                <p class="text-xs text-slate-500 mt-1">กระเป๋านวดอัจฉริยะ</p>
-                                <button type="button" onclick="toggleEcoDevice('pack')" id="eco-btn-pack" class="w-full mt-4 px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold text-sm transition-all">
-                                    เชื่อมต่อ
-                                </button>
-                            </div>
-
-                            <!-- RestNeck -->
-                            <div id="eco-card-neck" class="eco-device-card bg-slate-50 rounded-2xl border border-slate-200 p-5">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div id="eco-icon-neck" class="eco-device-icon w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
-                                        <i class="fa-solid fa-head-side-virus"></i>
-                                    </div>
-                                    <span id="eco-status-neck" class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-600 text-xs font-bold">ไม่ได้เชื่อมต่อ</span>
-                                </div>
-                                <h4 class="font-bold text-slate-900 mt-4">RestNeck</h4>
-                                <p class="text-xs text-slate-500 mt-1">หมอนรองคอไฟฟ้าอัจฉริยะ</p>
-                                <button type="button" onclick="toggleEcoDevice('neck')" id="eco-btn-neck" class="w-full mt-4 px-4 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-sm transition-all">
-                                    เชื่อมต่อ
-                                </button>
-                            </div>
-
-                            <!-- RestSeat -->
-                            <div id="eco-card-seat" class="eco-device-card bg-slate-50 rounded-2xl border border-slate-200 p-5">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div id="eco-icon-seat" class="eco-device-icon w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
-                                        <i class="fa-solid fa-chair"></i>
-                                    </div>
-                                    <span id="eco-status-seat" class="px-2.5 py-1 rounded-full bg-slate-200 text-slate-600 text-xs font-bold">ไม่ได้เชื่อมต่อ</span>
-                                </div>
-                                <h4 class="font-bold text-slate-900 mt-4">RestSeat</h4>
-                                <p class="text-xs text-slate-500 mt-1">หมอนรองนั่งเพื่อสุขภาพ</p>
-                                <button type="button" onclick="toggleEcoDevice('seat')" id="eco-btn-seat" class="w-full mt-4 px-4 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition-all">
-                                    เชื่อมต่อ
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <!-- Special mode -->
-                        <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
-                            <div class="lg:col-span-8 eco-special-mode rounded-2xl border-2 border-slate-200 bg-slate-50 p-5 sm:p-6">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 text-slate-900 flex items-center justify-center text-2xl shadow-md flex-shrink-0">
-                                        <i class="fa-solid fa-chair"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="flex flex-wrap items-center gap-2">
-                                            <h4 class="font-extrabold text-lg text-slate-900">โหมดเก้าอี้นวด</h4>
-                                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-amber-100 text-amber-700">Combo Mode</span>
-                                        </div>
-                                        <p id="eco-special-status" class="text-sm text-slate-600 mt-1">เปิดพร้อมกัน: RestNeck + RestSeat</p>
-                                    </div>
-                                    <button type="button" id="eco-special-btn" onclick="toggleChairMassageMode()" class="px-5 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all">
-                                        <i class="fa-solid fa-power-off mr-2"></i> เปิดโหมด
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="lg:col-span-4 rounded-2xl bg-amber-50 border border-amber-100 p-5 flex items-center gap-4">
-                                <div class="w-11 h-11 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-amber-700 font-bold">SMART COMBO</p>
-                                    <p class="text-sm font-semibold text-slate-900 mt-1">หมอนรองคอ + หมอนรองนั่ง</p>
-                                    <p id="eco-special-hint" class="text-xs text-slate-500 mt-1">กดครั้งเดียว ระบบจะเชื่อมต่อ RestNeck + RestSeat และเปิดพร้อมกัน</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
                 <div class="mt-10 text-center text-xs text-slate-400">
                     * หน้านี้เป็นต้นแบบการเชื่อมต่ออุปกรณ์ สำหรับการใช้งานจริงต้องเชื่อมต่อ Bluetooth/BLE กับฮาร์ดแวร์ของ REST Suite
                 </div>
@@ -1383,666 +1008,4 @@ button:focus-visible,input:focus-visible {
 
                     <!-- Member 3 -->
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-slate-900 text-xl font-bold shadow-md shadow-amber-500/20">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นายจิรภัทร บุญมาก</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230003</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 4 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-amber-400 text-xl font-bold shadow-md">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">พันกร นิสังกาศ</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230020</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 5 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-slate-900 text-xl font-bold shadow-md shadow-amber-500/20">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นางสาวรัชนก มุ่งดุกกลาง</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230024</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 6 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-amber-400 text-xl font-bold shadow-md">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นายสายฟ้า บุญอาจ</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230033</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 7 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-slate-900 text-xl font-bold shadow-md shadow-amber-500/20">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นางสาวบัณตฑิตา ศรีดามา</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230048</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 8 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-amber-400 text-xl font-bold shadow-md">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นายพงศทัศ นานมตรอง</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230053</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 9 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center text-slate-900 text-xl font-bold shadow-md shadow-amber-500/20">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นายพันวสันต์ ประสานพันธุ์</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230054</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                    <!-- Member 10 -->
-                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center space-y-3 hover:-translate-y-1 transition-all md:col-span-2 lg:col-span-1">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center text-amber-400 text-xl font-bold shadow-md">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-900">นายภัทรพล โพธิชัย</h3>
-                            <p class="text-xs text-amber-600 font-semibold mt-1">รหัสนิสิต: 69011230056</p>
-                        </div>
-                        <p class="text-xs text-slate-500">มหาวิทยาลัยมหาสารคาม</p>
-                    </div>
-
-                </div>
-
-                <!-- Acknowledgement Box -->
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-3xl text-center max-w-3xl mx-auto space-y-4 shadow-xl">
-                    <h3 class="text-xl font-bold text-amber-400">ขอขอบคุณแหล่งข้อมูล</h3>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        โครงการศึกษานี้จัดทำขึ้นเพื่อส่งเสริมความรู้และป้องกันภาวะออฟฟิศซินโดรมแก่นิสิตมหาวิทยาลัยมหาสารคาม (Mahasarakham University)
-                    </p>
-                    <div class="pt-2">
-                        <button onclick="switchPage('home')" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-6 py-2.5 rounded-xl text-sm transition-all">
-                            กลับสู่หน้าแรก
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                <div class="space-y-2">
-                    <div class="flex items-center justify-center md:justify-start space-x-2 text-white font-bold text-lg">
-                        <div class="w-8 h-8 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-sm">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-                        <span>MSU Anti-Office Syndrome & REST Suite</span>
-                    </div>
-                    <p class="text-xs text-slate-400">มหาวิทยาลัยมหาสารคาม (Mahasarakham University) ตำบลขามเรียง อำเภอกันทรวิชัย จังหวัดมหาสารคาม</p>
-                </div>
-                <div class="text-xs text-slate-500">
-                    &copy; 2026 MSU Anti-OS Project. สงวนลิขสิทธิ์ทุกประการ
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Page Transition & Interactions -->
-    <script>
-        
-        // Products Data Array for Interactive Selector
-        const productsData = [
-            {
-                badge: "01 / กระเป๋าเป้อัจฉริยะ",
-                title: "RestPack: Advanced Ergo-Posture Backpack",
-                subtitle: "กระเป๋าเป้ซัพพอร์ตสรีระพร้อมระบบนวดไฟฟ้าในตัว",
-                image: "assets/PRO1.jpg",
-                features: [
-                    "<strong>การซัพพอร์ตสรีระ:</strong> มีเบาะรองหลังซัพพอร์ตเอว (Internal Lumbar Pad Support) พร้อมเมมโมรี่โฟมช่วยรองรับสรีระแผ่นหลัง และสายสะพายไหล่นุ่มปรับระดับได้",
-                    "<strong>ระบบนวดไฟฟ้า:</strong> ติดตั้งมอเตอร์สั่นสะเทือนไฟฟ้าขนาดจิ๋ว (Miniature Electric Vibration Motors) และจุดสัมผัสอิเล็กทรอนิกส์สำหรับนวดเน้นเฉพาะจุด",
-                    "<strong>ระบบพลังงาน:</strong> มีชุดแบตเตอรี่ชาร์จไฟได้ในตัว (Integrated Rechargeable Battery Unit) พร้อมพอร์ต USB-C",
-                    "<strong>ฟังก์ชันพิเศษ:</strong> มาพร้อมระบบล็อกกับพนักพิงเก้าอี้ เพื่อเปลี่ยนกระเป๋าให้เป็นเบาะนวดติดเก้าอี้ได้",
-                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green"
-                ]
-            },
-            {
-                badge: "02 / หมอนรองคออัจฉริยะ",
-                title: "RestNeck: Smart Massage Neck Pillow",
-                subtitle: "หมอนรองคอไฟฟ้าอัจฉริยะเชื่อมต่อแอปพลิเคชันมือถือ",
-                image: "assets/PRO2.jpg",
-                features: [
-                    "<strong>การซัพพอร์ตสรีระ:</strong> ออกแบบตามหลักสรีระศาสตร์เพื่อรองรับต้นคอและกระดูกสันหลัง (Cervical Spine Support) โดยใช้โครงสร้างเมมโมรี่โฟมซับสรีระ",
-                    "<strong>ระบบนวดอัจฉริยะ:</strong> มอเตอร์นวดไฟฟ้าแบบสั่นและนวดหมุน (Kneading & Vibration Electric Motors) ทำงานร่วมกับหัวนวดไฟฟ้าสัมผัสนุ่ม",
-                    "<strong>การควบคุมผ่านแอป:</strong> เชื่อมต่อบลูทูธ (Bluetooth Sync) ควบคุมระดับความแรงและโหมดการนวดผ่าน Mobile App เช่น Gentle, Deep และ Stretch",
-                    "<strong>การพกพาและชาร์จไฟ:</strong> ดีไซน์มินิมอล พับเก็บได้ (Foldable Design) ชาร์จไวด้วยพอร์ต USB-C Quick Charge พร้อมปุ่มเปิด-ปิดง่าย",
-                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey, Pastel Pink และ Forest Green"
-                ]
-            },
-            {
-                badge: "03 / หมอนรองนั่งอัจฉริยะ",
-                title: "RestSeat: Smart Massage Seat Cushion",
-                subtitle: "หมอนรองนั่งเพื่อสุขภาพและซัพพอร์ตเชิงกราน",
-                image: "assets/PRO3.jpg",
-                features: [
-                    "<strong>การซัพพอร์ตสรีระ:</strong> รองรับเชิงกรานและกระดูกสันหลังส่วนล่าง (Pelvic & Lower Spine Support) ด้วยวัสดุ Ergonomic Memory Foam นุ่มสบาย",
-                    "<strong>ระบบนวดและการเชื่อมต่อ:</strong> มอเตอร์สั่นสะเทือนไฟฟ้าจิ๋ว รองรับระบบ Ecosystem Combo เชื่อมต่อการนวดร่วมกับกระเป๋าและหมอนรองคอได้ทั้ง Bluetooth และสายต่อคอมโบ",
-                    "<strong>การควบคุมผ่านแอป:</strong> ปรับแต่งรูปแบบ จังหวะ (Pattern) และความเร็ว (Speed) การนวดได้ละเอียดผ่าน Mobile App",
-                    "<strong>แบตเตอรี่และพอร์ตเสริม:</strong> มีแบตเตอรี่และ Control Hub ในตัว พร้อมพอร์ต USB-C และ Extension Combo Port",
-                    "<strong>ตัวเลือกสี:</strong> Classic Black, Navy Blue, Space Grey และ Forest Green"
-                ]
-            }
-        ];
-
-        function selectProduct(index) {
-            const p = productsData[index];
-            
-            // Highlight selected tab button
-            for (let i = 0; i < productsData.length; i++) {
-                const btn = document.getElementById('prod-btn-' + i);
-                const iconBox = btn.querySelector('div');
-                if (i === index) {
-                    btn.className = "prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-amber-400 bg-amber-50 text-slate-900 font-bold shadow-md transition-all";
-                    iconBox.className = "w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg";
-                } else {
-                    btn.className = "prod-tab-btn flex items-center space-x-3 px-6 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-semibold hover:border-amber-300 transition-all";
-                    iconBox.className = "w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-lg";
-                }
-            }
-
-            // Animate card content change
-            const card = document.getElementById('product-display-card');
-            card.classList.remove('exercise-content-transition');
-            void card.offsetWidth;
-            card.classList.add('exercise-content-transition');
-
-            // Update content
-            document.getElementById('prod-badge').innerText = p.badge;
-            document.getElementById('prod-title').innerText = p.title;
-            document.getElementById('prod-subtitle').innerText = p.subtitle;
-            document.getElementById('prod-img').src = p.image;
-            document.getElementById('prod-img').alt = p.title;
-
-            const featuresList = document.getElementById('prod-features');
-            featuresList.innerHTML = '';
-            p.features.forEach(feat => {
-                const li = document.createElement('li');
-                li.className = "flex items-start";
-                li.innerHTML = `<i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i> <span>${feat}</span>`;
-                featuresList.appendChild(li);
-            });
-        }
-
-        // Exercise Data Array (Updated with image paths from assets folder)
-        const exercises = [
-            {
-                title: "ยืดกล้ามเนื้อคอ (Neck Stretch)",
-                subtitle: "เอียงศีรษะไปด้านข้าง ใช้มือข้างเดียวกันดึงเบาๆ จนรู้สึกตึงบริเวณข้างคอ สลับซ้าย-ขวา",
-                duration: "ทำค้างไว้ 10-15 วินาที / ข้าง",
-                badge: "ท่าที่ 1 จาก 4",
-                image: "assets/Neck.png",
-                steps: [
-                    "นั่งตัวตรง ผ่อนคลายหัวไหล่ตามสบายทั้งสองข้าง",
-                    "เอียงศีรษะไปทางขวาให้ชิดไหล่ขวามากที่สุดโดยไม่ยกหัวไหล่ขึ้น",
-                    "ใช้มือขวาแตะศีรษะและดึงเบาๆ ค้างไว้ 10-15 วินาที",
-                    "ทำซ้ำ 3-5 ครั้ง แล้วสลับทำทางด้านซ้าย"
-                ]
-            },
-            {
-                title: "ยืดบ่าและสะบัก (Shoulder & Upper Back)",
-                subtitle: "ประสานมือยืดแขนไปข้างหน้าแล้วโก่งหลัง หรือดึงแขนพาดลำตัวเพื่อคลายบ่า",
-                duration: "ทำค้างไว้ 15-20 วินาที",
-                badge: "ท่าที่ 2 จาก 4",
-                image: "assets/Shoulder.png",
-                steps: [
-                    "ประสานมือทั้งสองข้างเข้าด้วยกันแล้วเหยียดแขนออกไปด้านหน้าให้สุดแขน",
-                    "ก้มศีรษะเล็กน้อยและโก่งหลังไปข้างหลังเพื่อให้สะบักยืดออก",
-                    "รู้สึกตึงบริเวณสะบักและหัวไหล่ด้านหลัง ค้างไว้ 15-20 วินาที",
-                    "คลายท่าแล้วทำซ้ำ 3 รอบ"
-                ]
-            },
-            {
-                title: "ยืดข้อมือและนิ้วมือ (Wrist & Hand)",
-                subtitle: "เหยียดแขนตรง กระดกข้อมือขึ้นและลง เพื่อป้องกันอาการนิ้วล็อกและชาปลายนิ้ว",
-                duration: "ทำค้างไว้ 10 วินาทีต่อท่า",
-                badge: "ท่าที่ 3 จาก 4",
-                image: "assets/Wrist.png",
-                steps: [
-                    "ยื่นแขนขวาออกไปข้างหน้า คว่ำมือลงแล้วกระดกปลายนิ้วมือขึ้น",
-                    "ใช้มือซ้ายดึงปลายนิ้วมือขวาเข้าหาตัวจนรู้สึกตึงที่ท้องแขน ค้างไว้ 10 วินาที",
-                    "เปลี่ยนเป็นคว่ำมือลงและงอข้อมือลง ใช้มือซ้ายดันหลังมือเบาๆ",
-                    "ทำซ้ำและสลับข้างซ้าย-ขวา"
-                ]
-            },
-            {
-                title: "ยืดหลังส่วนบน (Chest Opener)",
-                subtitle: "ประสานมือไว้ด้านหลังแล้วยืดอก ช่วยแก้อาการหลังค่อมจากการนั่งจ้องจอนาน",
-                duration: "ทำค้างไว้ 15 วินาที",
-                badge: "ท่าที่ 4 จาก 4",
-                image: "assets/Chest.png",
-                steps: [
-                    "ยืนหรือนั่งหลังตรง ประสานมือทั้งสองข้างไว้บริเวณสะโพกด้านหลัง",
-                    "ยืดอก ผายไหล่ไปด้านหลังและยกแขนขึ้นเล็กน้อย",
-                    "เงยหน้าขึ้นเล็กน้อย หายใจเข้าลึกๆ ค้างไว้ 15 วินาที",
-                    "ผ่อนคลายและทำซ้ำ 3-4 ครั้ง"
-                ]
-            }
-        ];
-
-        let currentExIndex = 0;
-        let isPageTransitioning = false;
-
-        // Smart device demo state
-        let deviceConnected = false;
-        let massageRunning = false;
-        let massageMode = 'ผ่อนคลาย';
-        let deviceBattery = 78;
-
-        function updateDeviceUI() {
-            const badge = document.getElementById('device-status-badge');
-            const name = document.getElementById('device-name');
-            const work = document.getElementById('device-work-status');
-            const notice = document.getElementById('device-notice');
-            const connectBtn = document.getElementById('connect-device-btn');
-            const battery = document.getElementById('battery-value');
-            const batteryBar = document.getElementById('battery-bar');
-            const batteryTime = document.getElementById('battery-time');
-            const powerBtn = document.getElementById('massage-power-btn');
-            const lastUpdate = document.getElementById('device-last-update');
-
-            if (!badge) return;
-
-            if (deviceConnected) {
-                badge.className = 'self-start sm:self-auto px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-semibold';
-                badge.innerHTML = '<i class="fa-solid fa-link mr-1"></i> เชื่อมต่อแล้ว';
-                name.textContent = 'Smart Massage Bag (RestPack) • BLE';
-                work.textContent = massageRunning ? 'กำลังนวด • ' + massageMode : 'พร้อมใช้งาน';
-                notice.textContent = massageRunning ? 'กำลังทำงานในโหมด ' + massageMode + ' สามารถหยุดได้จากปุ่ม Power' : 'อุปกรณ์พร้อมใช้งาน สามารถเลือกโหมดการนวดได้';
-                connectBtn.innerHTML = '<i class="fa-solid fa-link-slash mr-2"></i> ยกเลิกการเชื่อมต่อ';
-                connectBtn.className = 'flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold px-5 py-3.5 rounded-2xl transition-all shadow-md';
-                battery.textContent = deviceBattery + '%';
-                batteryBar.style.width = deviceBattery + '%';
-                batteryTime.textContent = 'ใช้งานได้ประมาณ ' + Math.max(1, Math.round(deviceBattery / 18)) + ' ชม.';
-                lastUpdate.textContent = 'อัปเดตล่าสุด: ' + new Date().toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'});
-                powerBtn.className = massageRunning ? 'w-14 h-14 rounded-2xl bg-amber-400 text-slate-900 flex items-center justify-center hover:bg-amber-500 transition-all shadow-lg' : 'w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center hover:bg-slate-800 transition-all';
-            } else {
-                badge.className = 'self-start sm:self-auto px-4 py-2 rounded-full bg-slate-700 text-slate-200 text-sm font-semibold';
-                badge.innerHTML = '<i class="fa-solid fa-link-slash mr-1"></i> ไม่ได้เชื่อมต่อ';
-                name.textContent = 'ยังไม่ได้เชื่อมต่อ';
-                work.textContent = 'ยังไม่ได้เชื่อมต่อ';
-                notice.textContent = 'เชื่อมต่ออุปกรณ์เพื่อสะกิดเตือนให้พักสายตาและเปลี่ยนอิริยาบถอย่างเป็นมิตรผ่านระบบ Ecosystem';
-                connectBtn.innerHTML = '<i class="fa-solid fa-bluetooth mr-2"></i> เชื่อมต่ออุปกรณ์';
-                connectBtn.className = 'flex-1 bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-3.5 rounded-2xl transition-all shadow-md';
-                battery.textContent = '--%';
-                batteryBar.style.width = '0%';
-                batteryTime.textContent = 'รอข้อมูล';
-                lastUpdate.textContent = 'ข้อมูลจะอัปเดตเมื่อเชื่อมต่อ';
-                powerBtn.className = 'w-14 h-14 rounded-2xl bg-slate-300 text-slate-500 flex items-center justify-center transition-all';
-                massageRunning = false;
-            }
-        }
-
-        function toggleDeviceConnection() {
-            deviceConnected = !deviceConnected;
-            if (deviceConnected) {
-                deviceBattery = 78;
-                setTimeout(() => updateDeviceUI(), 150);
-            }
-            updateDeviceUI();
-        }
-
-        function refreshDeviceStatus() {
-            if (!deviceConnected) {
-                alert('กรุณาเชื่อมต่ออุปกรณ์ก่อน');
-                return;
-            }
-            deviceBattery = Math.max(1, deviceBattery - (Math.random() > 0.65 ? 1 : 0));
-            updateDeviceUI();
-        }
-
-        function setMassageMode(mode) {
-            massageMode = mode;
-            const label = document.getElementById('massage-mode-label');
-            if (label) label.textContent = mode;
-            document.querySelectorAll('.massage-mode-btn').forEach(btn => {
-                btn.classList.remove('border-amber-400','bg-amber-50','text-amber-700','font-bold');
-                btn.classList.add('border-slate-200','text-slate-700');
-            });
-            const buttons = Array.from(document.querySelectorAll('.massage-mode-btn'));
-            const target = buttons.find(btn => btn.textContent.includes(mode));
-            if (target) {
-                target.classList.remove('border-slate-200','text-slate-700');
-                target.classList.add('border-amber-400','bg-amber-50','text-amber-700','font-bold');
-            }
-            if (deviceConnected && massageRunning) updateDeviceUI();
-        }
-
-        function toggleMassage() {
-            if (!deviceConnected) {
-                alert('กรุณาเชื่อมต่อกระเป๋านวดก่อน');
-                return;
-            }
-            massageRunning = !massageRunning;
-            if (massageRunning && deviceBattery <= 0) massageRunning = false;
-            updateDeviceUI();
-        }
-
-        // Switch Page with smooth animation
-        function switchPage(pageId) {
-        if (isPageTransitioning) return;
-
-        const target = document.getElementById('page-' + pageId);
-        if (!target) return;
-
-        const current = document.querySelector('.page-section.active');
-
-        if (current && current.id === 'page-' + pageId) return;
-
-        isPageTransitioning = true;
-
-        const bar = document.getElementById('page-transition-bar');
-
-        if (bar) {
-            bar.classList.remove('complete');
-            void bar.offsetWidth;
-            bar.classList.add('loading');
-        }
-
-        if (current) {
-            current.style.animation = 'pageExit .25s ease forwards';
-
-            setTimeout(() => {
-                current.classList.remove('active');
-                current.style.animation = '';
-            }, 220);
-        }
-
-        setTimeout(() => {
-            target.classList.add('active');
-
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove(
-                    'text-amber-600',
-                    'bg-amber-50',
-                    'font-semibold'
-                );
-                btn.classList.add('text-slate-600');
-            });
-
-            const activeNav = document.getElementById('nav-' + pageId);
-
-            if (activeNav) {
-                activeNav.classList.remove('text-slate-600');
-                activeNav.classList.add(
-                    'text-amber-600',
-                    'bg-amber-50',
-                    'font-semibold'
-                );
-            }
-
-            setTimeout(() => {
-                if (bar) {
-                    bar.classList.remove('loading');
-                    bar.classList.add('complete');
-                }
-                isPageTransitioning = false;
-            }, 350);
-        }, 230);
-    }
-
-        // Toggle mobile menu dropdown
-        function toggleMobileMenu() {
-        const menu = document.getElementById('mobile-menu');
-        const icon = document.getElementById('mobile-menu-icon');
-
-        if (!menu || !icon) return;
-
-        const isOpen = menu.classList.contains('mobile-open');
-
-        if (isOpen) {
-            menu.classList.remove('mobile-open');
-
-            setTimeout(() => {
-                if (!menu.classList.contains('mobile-open')) {
-                    menu.classList.add('hidden');
-                }
-            }, 350);
-
-            icon.className = 'fa-solid fa-bars text-xl';
-        } else {
-            menu.classList.remove('hidden');
-            void menu.offsetWidth;
-            menu.classList.add('mobile-open');
-            icon.className = 'fa-solid fa-xmark text-xl';
-        }
-    }
-
-        // Accordion Toggle for Q&A
-        function toggleAccordion(id) {
-        const body = document.getElementById('acc-body-' + id);
-        const icon = document.getElementById('acc-icon-' + id);
-
-        if (!body || !icon) return;
-
-        const item = body.closest('.accordion-item');
-        const isOpen = body.classList.contains('open');
-
-        if (isOpen) {
-            body.classList.remove('open');
-            if (item) item.classList.remove('open');
-            icon.style.transform = 'rotate(0deg)';
-        } else {
-            body.classList.add('open');
-            if (item) item.classList.add('open');
-            icon.style.transform = 'rotate(180deg)';
-        }
-    }
-
-        // Select specific exercise
-        function selectExercise(index) {
-            currentExIndex = index;
-
-        const exercisePanel = document.querySelector(
-            '#page-exercises .lg\\:col-span-7'
-        );
-
-        if (exercisePanel) {
-            exercisePanel.classList.remove('exercise-content-transition');
-            void exercisePanel.offsetWidth;
-            exercisePanel.classList.add('exercise-content-transition');
-        }
-            const ex = exercises[index];
-
-            // Update cards styling
-            for (let i = 0; i < exercises.length; i++) {
-                const card = document.getElementById('ex-card-' + i);
-                if (i === index) {
-                    card.className = "exercise-card cursor-pointer bg-white p-5 rounded-2xl border-2 border-amber-400 shadow-md transition-all flex items-center space-x-4";
-                    card.querySelector('div').className = "w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg flex-shrink-0 transition-all";
-                } else {
-                    card.className = "exercise-card cursor-pointer bg-white p-5 rounded-2xl border-2 border-slate-200 hover:border-amber-300 shadow-sm transition-all flex items-center space-x-4";
-                    card.querySelector('div').className = "w-12 h-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-lg flex-shrink-0 transition-all";
-                }
-            }
-
-            // Update content details
-            document.getElementById('ex-badge').innerText = ex.badge;
-            document.getElementById('ex-duration').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${ex.duration}`;
-            document.getElementById('ex-title').innerText = ex.title;
-            document.getElementById('ex-subtitle').innerText = ex.subtitle;
-            
-            // Update image source
-            const mainImg = document.getElementById('ex-main-img');
-            if (mainImg) {
-                mainImg.src = ex.image;
-                mainImg.alt = ex.title;
-            }
-
-            // Update steps list
-            const stepsList = document.getElementById('ex-steps');
-            stepsList.innerHTML = '';
-            ex.steps.forEach(step => {
-                const li = document.createElement('li');
-                li.className = "flex items-start";
-                li.innerHTML = `<i class="fa-solid fa-check text-amber-500 mt-1 mr-2.5 flex-shrink-0"></i> ${step}`;
-                stepsList.appendChild(li);
-            });
-        }
-
-        // Next Exercise
-        // Previous Exercise
-        function prevExercise() {
-            currentExIndex = (currentExIndex - 1 + exercises.length) % exercises.length;
-            selectExercise(currentExIndex);
-        }
-        function nextExercise() {
-            currentExIndex = (currentExIndex + 1) % exercises.length;
-            selectExercise(currentExIndex);
-        }
-    
-
-        /* =========================================================
-           PRODUCT PRESENTATION MODAL - ADDITION ONLY
-           ========================================================= */
-        function openProductModal(index) {
-            const p = productsData[index];
-            if (!p) return;
-
-            const modal = document.getElementById('product-detail-modal');
-            const image = document.getElementById('modal-product-image');
-            const badge = document.getElementById('modal-product-badge');
-            const title = document.getElementById('modal-product-title');
-            const subtitle = document.getElementById('modal-product-subtitle');
-            const featureContainer = document.getElementById('modal-product-features');
-
-            image.src = p.image;
-            image.alt = p.title;
-            badge.textContent = p.badge;
-            title.textContent = p.title;
-            subtitle.textContent = p.subtitle;
-
-            featureContainer.innerHTML = '';
-            p.features.forEach(function(feature) {
-                const item = document.createElement('div');
-                item.className = 'product-modal-feature';
-                item.innerHTML = '<i class="fa-solid fa-check"></i><div>' + feature + '</div>';
-                featureContainer.appendChild(item);
-            });
-
-            modal.classList.add('show');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProductModal() {
-            const modal = document.getElementById('product-detail-modal');
-            if (!modal) return;
-
-            modal.classList.remove('show');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            for (let i = 0; i < productsData.length; i++) {
-                const button = document.getElementById('prod-btn-' + i);
-                if (!button) continue;
-
-                /* ใช้ capture phase เพื่อไม่แก้ onclick เดิมของปุ่ม */
-                button.addEventListener('click', function() {
-                    setTimeout(function() {
-                        openProductModal(i);
-                    }, 80);
-                }, false);
-            }
-
-            const closeButton = document.getElementById('product-modal-close');
-            if (closeButton) {
-                closeButton.addEventListener('click', closeProductModal);
-            }
-
-            const modal = document.getElementById('product-detail-modal');
-            if (modal) {
-                modal.addEventListener('click', function(event) {
-                    if (event.target === modal) {
-                        closeProductModal();
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    closeProductModal();
-                }
-            });
-        });
-
-    </script>
-
-
-    <!-- =========================================================
-         PRODUCT PRESENTATION MODAL - ADDITION ONLY
-         ========================================================= -->
-    <div id="product-detail-modal" class="product-modal" aria-hidden="true">
-        <div class="product-modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
-            <button id="product-modal-close" class="product-modal-close" type="button" aria-label="ปิดรายละเอียดสินค้า">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-6 product-modal-image">
-                    <img id="modal-product-image" src="" alt="Product">
-                </div>
-
-                <div class="lg:col-span-6 product-modal-content">
-                    <span id="modal-product-badge" class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-700 px-3.5 py-1.5 rounded-full"></span>
-                    <h2 id="modal-product-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-4 leading-tight"></h2>
-                    <p id="modal-product-subtitle" class="text-sm text-slate-500 mt-2 mb-6"></p>
-                    <div id="modal-product-features" class="space-y-1"></div>
-
-                    <div class="mt-7 pt-5 border-t border-slate-100">
-                        <button type="button" onclick="closeProductModal()" class="w-full bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-3.5 px-6 rounded-2xl shadow-md transition-all">
-                            <i class="fa-solid fa-check mr-2"></i>
-                            เข้าใจแล้ว / ปิดรายละเอียด
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+                        <div class="w-16 h-
